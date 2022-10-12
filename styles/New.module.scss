@@ -27,6 +27,9 @@
   border: none;
   background: none;
   color: #ffb800;
+  &:disabled {
+    color: #777;
+  }
 }
 
 .images {
@@ -42,4 +45,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.input {
+  display: none;
+}
+
+.uploaded {
+  width: 100%;
+  aspect-ratio: 1;
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  padding: 0;
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
 }

@@ -13,13 +13,15 @@ const Footer = ({ n }: { n: number }) => {
         이전
       </button>
       <div>총 {n}장의 사진을 등록했어요!</div>
-      <button className={styles.button}>완료</button>
+      <button className={styles.button} disabled={n < 2}>
+        완료
+      </button>
     </div>
   );
 };
 
-const UploadButton = () => (
-  <div className={styles.upload_button}>
+const UploadButton = ({ handleFileUpload }: { handleFileUpload: Function }) => (
+  <label className={styles.upload_button}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="18"
@@ -32,11 +34,25 @@ const UploadButton = () => (
         fill="white"
       />
     </svg>
-  </div>
+    <input
+      className={styles.input}
+      type="file"
+      onChange={(e) => {
+        if (e.target.files) handleFileUpload(e.target.files[0]);
+      }}
+    />
+  </label>
 );
 
 const Home: NextPage = () => {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState([] as File[]);
+
+  const handleFileUpload = (file: File) => {
+    if (!file) return;
+    const f = file; // 여기에 파일 업로드 입력
+    setImages((images) => [...images, f]);
+  };
+
   return (
     <Layout footer={<Footer n={images.length} />}>
       <div className={styles.main}>
@@ -47,8 +63,36 @@ const Home: NextPage = () => {
           <li>각 사진의 대진은 무작위로 진행됩니다.</li>
         </ul>
         <div className={styles.images}>
-          <UploadButton />
-          <UploadButton />
+          {images.length === 0 && (
+            <UploadButton handleFileUpload={handleFileUpload} />
+          )}
+          {images.map((image) => (
+            <div key={image.name} className={styles.uploaded}>
+              <img src="https://src.hidoc.co.kr/image/lib/2022/5/12/1652337370806_0.jpg" />
+              <button
+                className={styles.close}
+                onClick={() => {
+                  setImages((images) =>
+                    images.filter((i) => i.name !== image.name)
+                  );
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                >
+                  <path
+                    d="M3.99995 4.52501L1.46245 7.06251C1.39578 7.12918 1.31045 7.16451 1.20645 7.16851C1.10212 7.17285 1.01245 7.13751 0.937451 7.06251C0.862451 6.98751 0.824951 6.90001 0.824951 6.80001C0.824951 6.70001 0.862451 6.61251 0.937451 6.53751L3.47495 4.00001L0.937451 1.46251C0.870784 1.39585 0.835451 1.31035 0.831451 1.20601C0.827118 1.10201 0.862451 1.01251 0.937451 0.937512C1.01245 0.862512 1.09995 0.825012 1.19995 0.825012C1.29995 0.825012 1.38745 0.862512 1.46245 0.937512L3.99995 3.47501L6.53745 0.937512C6.60412 0.870845 6.68962 0.835346 6.79395 0.831012C6.89795 0.827012 6.98745 0.862512 7.06245 0.937512C7.13745 1.01251 7.17495 1.10001 7.17495 1.20001C7.17495 1.30001 7.13745 1.38751 7.06245 1.46251L4.52495 4.00001L7.06245 6.53751C7.12912 6.60418 7.16445 6.68951 7.16845 6.79351C7.17278 6.89785 7.13745 6.98751 7.06245 7.06251C6.98745 7.13751 6.89995 7.17501 6.79995 7.17501C6.69995 7.17501 6.61245 7.13751 6.53745 7.06251L3.99995 4.52501Z"
+                    fill="white"
+                  />
+                </svg>
+              </button>
+            </div>
+          ))}
+          <UploadButton handleFileUpload={handleFileUpload} />
         </div>
       </div>
     </Layout>
