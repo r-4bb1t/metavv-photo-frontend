@@ -2,9 +2,13 @@ import type { NextPage } from "next";
 import { Layout } from "../components/Layout";
 import styles from "../styles/Main.module.scss";
 
+const Footer = () => {
+  return <button className={styles.button}>만들기</button>;
+};
+
 const Home: NextPage = () => {
   return (
-    <Layout>
+    <Layout footer={<Footer />}>
       <div className={styles.main}>
         <div className={styles.title}>포토 월드컵</div>
         <div className={styles.contents}>

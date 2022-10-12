@@ -2,7 +2,13 @@ import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import styles from "../styles/Layout.module.scss";
 
-export const Layout = ({ children }: { children: ReactNode }) => {
+export const Layout = ({
+  children,
+  footer,
+}: {
+  children: ReactNode;
+  footer?: ReactNode;
+}) => {
   return (
     <div className={styles.container}>
       <div className={styles.background}>
@@ -49,6 +55,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
         <div className={styles.bottom_right}></div>
       </div>
       <main className={styles.main}>{children}</main>
+      <footer className={styles.footer}>{footer}</footer>
     </div>
   );
 };
