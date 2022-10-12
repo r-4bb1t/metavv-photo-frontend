@@ -1,0 +1,17 @@
+$primary: #731e96;
+
+.square {
+  width: calc(100% + 4rem);
+  margin-left: -2rem;
+  aspect-ratio: 1 / 1;
+}
+
+.button {
+  width: 100%;
+  border-radius: 9999px;
+  background-color: $primary;
+  height: 50px;
+  color: white;
+  margin: 2rem 0;
+  border: none;
+}
