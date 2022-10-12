@@ -1,0 +1,45 @@
+.main {
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.contents {
+  font-size: 13px;
+  line-height: 20px;
+  opacity: 0.8;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 80px 1fr 80px;
+  place-items: center;
+  background-color: black;
+  height: 100%;
+}
+
+.button {
+  font-weight: 700;
+  border: none;
+  background: none;
+  color: #ffb800;
+}
+
+.images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.upload_button {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
