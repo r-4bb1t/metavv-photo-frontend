@@ -68,12 +68,13 @@ const Home: NextPage = () => {
           )}
           {images.map((image) => (
             <div key={image.name} className={styles.uploaded}>
+              {/* key를 image.name으로 하면 안된다 (겹칠 수 있어서... 나중에 id 같은 걸로 바꿔줘야 함.) */}
               <img src="https://src.hidoc.co.kr/image/lib/2022/5/12/1652337370806_0.jpg" />
               <button
                 className={styles.close}
                 onClick={() => {
-                  setImages((images) =>
-                    images.filter((i) => i.name !== image.name)
+                  setImages(
+                    (images) => images.filter((i) => i.name !== image.name) // 마찬가지
                   );
                 }}
               >
