@@ -90,6 +90,15 @@
   position: absolute;
   bottom: 2rem;
   right: 2rem;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  padding-bottom: 5px;
+  padding-right: 10px;
+
+  font-size: 10px;
 }
 
 .footer {

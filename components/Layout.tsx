@@ -52,7 +52,7 @@ export const Layout = ({
           </svg>
         </div>
         <div className={styles.bottom_left}></div>
-        <div className={styles.bottom_right}></div>
+        <div className={styles.bottom_right}>60 FPS</div>
       </div>
       <main className={styles.main}>{children}</main>
       <footer className={styles.footer}>{footer}</footer>
