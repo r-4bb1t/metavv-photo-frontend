@@ -27,81 +27,16 @@
 .background {
   position: fixed;
   z-index: 1;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: calc(100vh - 4rem);
+  padding: 1rem;
   pointer-events: none;
-}
-
-.top_left {
-  border-top: 1px solid white;
-  border-left: 1px solid white;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-
-  padding-top: 5px;
-  padding-left: 10px;
-
-  display: flex;
-  align-items: flex-start;
-  gap: 5px;
-
-  font-size: 12px;
-
-  &::before {
-    content: "";
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background-color: orange;
-    margin-top: 5px;
-  }
-}
-
-.top_right {
-  border-top: 1px solid white;
-  border-right: 1px solid white;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-
-  padding-right: 10px;
-
-  display: flex;
-  justify-content: flex-end;
-}
-
-.bottom_left {
-  border-bottom: 1px solid white;
-  border-left: 1px solid white;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-}
-
-.bottom_right {
-  border-bottom: 1px solid white;
-  border-right: 1px solid white;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-
-  padding-bottom: 5px;
-  padding-right: 10px;
-
-  font-size: 10px;
+  display: grid;
+  grid-template-columns: 34px 1fr 34px;
+  grid-template-rows: 34px 1fr 34px;
+  place-items: center;
 }
 
 .footer {
