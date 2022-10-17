@@ -6,7 +6,15 @@ import { Layout } from "../components/Layout";
 import { useData } from "../hooks/useData";
 import styles from "../styles/New.module.scss";
 
-const Footer = ({ n, len }: { n: number; len: number }) => {
+const Footer = ({
+  n,
+  len,
+  handleSubmit,
+}: {
+  n: number;
+  len: number;
+  handleSubmit: Function;
+}) => {
   const router = useRouter();
   return (
     <div className={styles.footer}>
@@ -14,7 +22,11 @@ const Footer = ({ n, len }: { n: number; len: number }) => {
         이전
       </button>
       <div>총 {n}장의 사진을 등록했어요!</div>
-      <button className={styles.button} disabled={n < len}>
+      <button
+        className={styles.button}
+        disabled={n < len}
+        onClick={() => handleSubmit()}
+      >
         완료
       </button>
     </div>
@@ -38,6 +50,7 @@ const UploadButton = ({ handleFileUpload }: { handleFileUpload: Function }) => (
     <input
       className={styles.input}
       type="file"
+      accept="image/*"
       onChange={(e) => {
         if (e.target.files) handleFileUpload(e.target.files[0]);
       }}
@@ -46,7 +59,8 @@ const UploadButton = ({ handleFileUpload }: { handleFileUpload: Function }) => (
 );
 
 const Home: NextPage = () => {
-  const { images, setImages, len, setLen } = useData();
+  const { name, images, setImages, len, setLen } = useData();
+  const router = useRouter();
 
   const handleFileUpload = (file: File) => {
     if (!file) return;
@@ -57,8 +71,36 @@ const Home: NextPage = () => {
     ]);
   };
 
+  const handleSubmit = async () => {
+    const data = new FormData();
+    images.forEach((image) => {
+      data.append("files", image.file);
+    });
+    data.append("title", name);
+    data.append("standard", "");
+    data.append("tags", "{}");
+    data.append("isPublic", "true");
+    data.append("password", "1234");
+
+    const result = await (
+      await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/new`, {
+        method: "POST",
+        body: data,
+      }).catch((e) => {
+        if (e.code == 413) alert("파일 크기가 너무 큽니다.");
+        else alert("문제가 발생했습니다. 잠시 후 다시 시도해주세요.");
+      })
+    )?.json();
+
+    router.push(`/game/${result.url}`);
+  };
+
   return (
-    <Layout footer={<Footer n={images.length} len={len} />}>
+    <Layout
+      footer={
+        <Footer n={images.length} len={len} handleSubmit={handleSubmit} />
+      }
+    >
       <div className={styles.main}>
         <div className={styles.title}>사진을 등록해주세요!</div>
         <ul className={styles.contents}>
