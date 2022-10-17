@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import { Layout } from "../components/Layout";
+import { useData } from "../hooks/useData";
 import styles from "../styles/Main.module.scss";
 
 const Footer = () => {
@@ -12,6 +13,7 @@ const Footer = () => {
 };
 
 const Home: NextPage = () => {
+  const { name, setName } = useData();
   return (
     <Layout footer={<Footer />}>
       <div className={styles.main}>
@@ -23,7 +25,13 @@ const Home: NextPage = () => {
         </div>
         <img src="/assets/camera.png" className={styles.camera} />
         <div className={styles.input_container}>
-          <input placeholder="입력해주세요." className={styles.input} />의
+          <input
+            placeholder="입력해주세요."
+            className={styles.input}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          의
           <br />
           포토 월드컵
         </div>

@@ -1,3 +1,5 @@
+$primary: #ffb800;
+
 .main {
 }
 
@@ -12,6 +14,7 @@
   font-size: 13px;
   line-height: 20px;
   opacity: 0.8;
+  padding-inline-start: 1rem;
 }
 
 .footer {
@@ -74,4 +77,27 @@
   border: none;
   background: rgba(0, 0, 0, 0.5);
   color: white;
+}
+
+.lenbtncontainer {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.lenbtn {
+  width: 100%;
+  padding: 8px 0;
+  text-align: center;
+  color: $primary;
+  border: 1px solid $primary;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  background: none;
+}
+
+.lenbtn.active {
+  background-color: $primary;
+  color: #0c0c0c;
 }

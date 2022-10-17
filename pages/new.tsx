@@ -3,9 +3,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Layout } from "../components/Layout";
+import { useData } from "../hooks/useData";
 import styles from "../styles/New.module.scss";
 
-const Footer = ({ n }: { n: number }) => {
+const Footer = ({ n, len }: { n: number; len: number }) => {
   const router = useRouter();
   return (
     <div className={styles.footer}>
@@ -13,7 +14,7 @@ const Footer = ({ n }: { n: number }) => {
         이전
       </button>
       <div>총 {n}장의 사진을 등록했어요!</div>
-      <button className={styles.button} disabled={n < 2}>
+      <button className={styles.button} disabled={n < len}>
         완료
       </button>
     </div>
@@ -45,36 +46,59 @@ const UploadButton = ({ handleFileUpload }: { handleFileUpload: Function }) => (
 );
 
 const Home: NextPage = () => {
-  const [images, setImages] = useState([] as File[]);
+  const { images, setImages } = useData();
+  const [len, setLen] = useState(2);
 
   const handleFileUpload = (file: File) => {
     if (!file) return;
-    const f = file; // 여기에 파일 업로드 입력
-    setImages((images) => [...images, f]);
+    const f = file;
+    setImages((images) => [
+      ...images,
+      { file: f, id: f.name + new Date().toString() },
+    ]);
   };
 
   return (
-    <Layout footer={<Footer n={images.length} />}>
+    <Layout footer={<Footer n={images.length} len={len} />}>
       <div className={styles.main}>
         <div className={styles.title}>사진을 등록해주세요!</div>
         <ul className={styles.contents}>
-          <li>사진은 최소 2장 ~ 최대 16장까지 선택할 수 있어요.</li>
-          <li>선택한 사진이 홀수인 경우 1장은 부전승 처리됩니다.</li>
+          <li>2강, 4강, 8강, 16강 중 진행 방식을 선택해주세요.</li>
+          <li>사진은 정방형 사이즈로 게시되어 진행됩니다.</li>
           <li>각 사진의 대진은 무작위로 진행됩니다.</li>
         </ul>
+        <div className={styles.lenbtncontainer}>
+          {[2, 4, 8, 16].map((l) => (
+            <button
+              key={l}
+              className={`${styles.lenbtn} ${len === l ? styles.active : ""}`}
+              onClick={() => {
+                if (
+                  confirm(
+                    "N강으로 변경하시겠습니까?\n현재 등록한 사진은 초기화됩니다."
+                  )
+                ) {
+                  setLen(l);
+                  setImages([]);
+                }
+              }}
+            >
+              {l}강
+            </button>
+          ))}
+        </div>
         <div className={styles.images}>
-          {images.length === 0 && (
-            <UploadButton handleFileUpload={handleFileUpload} />
-          )}
-          {images.map((image) => (
-            <div key={image.name} className={styles.uploaded}>
-              {/* key를 image.name으로 하면 안된다 (겹칠 수 있어서... 나중에 id 같은 걸로 바꿔줘야 함.) */}
-              <img src="https://src.hidoc.co.kr/image/lib/2022/5/12/1652337370806_0.jpg" />
+          {images.map((image, index) => (
+            <div key={image.id} className={styles.uploaded}>
+              <img
+                src={URL.createObjectURL(image.file)}
+                alt={image.file.name}
+              />
               <button
                 className={styles.close}
                 onClick={() => {
-                  setImages(
-                    (images) => images.filter((i) => i.name !== image.name) // 마찬가지
+                  setImages((images) =>
+                    images.filter((i) => i.id !== image.id)
                   );
                 }}
               >
@@ -93,7 +117,9 @@ const Home: NextPage = () => {
               </button>
             </div>
           ))}
-          <UploadButton handleFileUpload={handleFileUpload} />
+          {[...Array(len - images.length)].map((_, i) => (
+            <UploadButton handleFileUpload={handleFileUpload} key={i} />
+          ))}
         </div>
       </div>
     </Layout>
