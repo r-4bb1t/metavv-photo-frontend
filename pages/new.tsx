@@ -75,7 +75,7 @@ const Home: NextPage = () => {
               onClick={() => {
                 if (
                   confirm(
-                    "N강으로 변경하시겠습니까?\n현재 등록한 사진은 초기화됩니다."
+                    `${l}강으로 변경하시겠습니까?\n현재 등록한 사진은 초기화됩니다.`
                   )
                 ) {
                   setLen(l);
