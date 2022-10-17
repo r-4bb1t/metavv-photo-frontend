@@ -46,8 +46,7 @@ const UploadButton = ({ handleFileUpload }: { handleFileUpload: Function }) => (
 );
 
 const Home: NextPage = () => {
-  const { images, setImages } = useData();
-  const [len, setLen] = useState(2);
+  const { images, setImages, len, setLen } = useData();
 
   const handleFileUpload = (file: File) => {
     if (!file) return;

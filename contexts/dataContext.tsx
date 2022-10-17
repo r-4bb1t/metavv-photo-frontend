@@ -11,6 +11,8 @@ interface DataContextProps {
   setName: Dispatch<SetStateAction<string>>;
   images: { file: File; id: string }[];
   setImages: Dispatch<SetStateAction<{ file: File; id: string }[]>>;
+  len: number;
+  setLen: Dispatch<SetStateAction<number>>;
 }
 
 export const DataContext = createContext<DataContextProps>({
@@ -18,11 +20,15 @@ export const DataContext = createContext<DataContextProps>({
   setName: () => {},
   images: [],
   setImages: () => {},
+  len: 2,
+  setLen: () => {},
 });
 
 const DataContextProvider = ({ children }: { children: ReactNode }) => {
   const [name, setName] = useState("");
   const [images, setImages] = useState([] as { file: File; id: string }[]);
+
+  const [len, setLen] = useState(2);
 
   return (
     <DataContext.Provider
@@ -31,6 +37,8 @@ const DataContextProvider = ({ children }: { children: ReactNode }) => {
         setName,
         images,
         setImages,
+        len,
+        setLen,
       }}
     >
       {children}
