@@ -162,6 +162,17 @@ const Home: NextPage = () => {
             <UploadButton handleFileUpload={handleFileUpload} key={i} />
           ))}
         </div>
+        {
+          images.length > 0 ? 
+          <div className={styles.imageReset}>
+            <span className={styles.reset}>사진 초기화</span>
+            <span className={styles.resetButton}>
+             <img src="/assets/refresh.svg" onClick={()=>{setImages([]);}}/>
+            </span>
+          </div>
+          :
+          null
+      }
       </div>
     </Layout>
   );
