@@ -1,0 +1,249 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: grey;
+  }
+
+.main {
+    position: relative;
+    width: 100%;
+    min-width: 320px;
+    max-width: 375px;
+    background-image: url(/assets/background.png);
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+    min-height: 100vh;
+    overflow: auto;
+  }
+  
+  .bar{
+    width: 100%;
+    min-width: 375px;
+    height: 48px;
+    display: flex;
+    background-color: #333333;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .profile{
+    display: flex;
+    width: 235px;
+    height: 28px;
+    margin-right: 8px;
+  }
+
+  .close{
+    width: 12.7px;
+    height: 12.7px;
+    margin: 5.65px;
+    margin-left: 21.65px;
+    margin-right: 13.65px;
+  }
+
+  .profile img{
+    width: 28px;
+    height: 28px;
+    margin-right: 8px;
+  }
+
+  .profile span{
+    display: inline-block;
+    line-height: 24px;
+    width: 199px;
+    height: 24px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 16px;
+  }
+
+  .shuffle{
+    width: 18.08px;
+    height: 17.73px;
+    margin: 3.14px 2.92px 3.13px 3px;
+    margin-right: 18.92px;
+  }
+
+  .bookmark{
+    width: 13px;
+    height: 16.75px;
+    margin: 3.5px 5.5px 3.75px 5.5px;
+    margin-right: 25.5px;
+  }
+
+  .imgArea {
+    width: 84px;
+    height: 24px;
+  }
+
+  .contents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 375px;
+    height: 692px;
+    padding: 40px 0px;
+    width: 100%;
+  }
+  
+  .imgBox{
+    width: 335px;
+    height: 154.97px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .imgBox img{
+    position:absolute;
+  }
+
+  .img1{
+    width: 130px;
+    rotate: (-3deg);
+    left: 43.26px;
+
+  }
+  .img2{
+    width: 130px;
+    rotate: (9deg);
+    right: 43.26px;
+  }
+
+  .img3{
+    width: 40px;
+    height: 40px;
+    top: 57px;
+    left: 147px;
+  }
+
+  .textBox{
+    padding-bottom: 24px;
+    width: 335px;
+    height: 108px;
+    text-align: center;
+  }
+
+  .title{
+    margin-bottom: 12px;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.2px;
+    font-weight: 600;
+  }
+
+  .desc{
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.2px;
+    font-weight:200;
+  }
+
+  .informBox{
+    width: 335px;
+    height: 187px;
+    padding-top: 32px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .myInform{
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+
+  .informBox input{
+    width: 335px;
+    height: 47px;
+    border-radius: 8px;
+    padding: 12px;
+    gap: 12px;
+    background-color: rgba($color: #ffffff, $alpha: 0.15);
+    color: #ffffff;
+    border: 0;
+    font-size: 16px;
+    line-height: 23px;
+    outline: none;
+  }
+
+  .addProfile{
+    width: 335px;
+    height: 36px;
+    position: relative;
+  }
+
+  .addProfile img{
+    position: absolute;
+    top: 14.5px;
+    left: 6.5px;
+    width: 19px;
+    height: 19px;
+    
+  }
+
+  .addProfile p{
+    font-style: normal;
+    display: inline-block;
+    position: absolute;
+    margin: 0;
+    top: 12.5px;
+    left: 32px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23.17px;
+    letter-spacing: -0.2px;
+    color: #FFB800;
+    font-feature-settings: 'hist' on;
+  }
+
+  .notice{
+    width: 335px;
+    height: 36px;
+    padding: 8px 4px 8px 32px;
+    position: relative;
+  }
+
+  .notice div{
+    position: absolute;
+    display: inline-block;
+    top: 8px;
+    left: 32px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20.27px;
+    letter-spacing: -0.2px;
+    color: rgba($color: #ffffff, $alpha: 0.5);
+  }
+
+  .votingBtn{
+    margin-top: 30px;
+    width: 335px;
+    height: 48px;
+    background: #FFB800;
+    border-radius: 8px;
+    border: 0;
+    padding: 0px 12px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    font-style: normal;
+  }
+
+  .resultBtn{
+    width: 335px;
+    height: 48px;
+    background: #0C0C0C;
+    border: 1px solid #FFB800;
+    border-radius: 8px;
+    padding: 0px 12px;
+    gap: 4px;
+    margin-top: 16px;
+    color: #FFB800;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+  }
