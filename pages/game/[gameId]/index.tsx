@@ -69,7 +69,9 @@ const Home: NextPage = () => {
         <Link href={`/game/${router.query.gameId}/vote`}>
           <a className={common.button}>포토 월드컵 투표하기</a>
         </Link>
-        <button className={common.borderedButton}>전체 결과 바로보기</button>
+        <Link href={`/game/${router.query.gameId}/result/all`}>
+          <a className={common.borderedButton}>전체 결과 바로보기</a>
+        </Link>
       </div>
     </Layout>
   );
