@@ -31,11 +31,27 @@ const Home: NextPage = () => {
   const [image, setImage] = useState("");
   const router = useRouter();
 
-  const { setImages } = useResult();
+  const { name, images, setImages } = useResult();
   const [next, setNext] = useState([] as Photo[]);
   const [selected, setSelected] = useState([] as Photo[]);
   const [round, setRound] = useState(0);
   const [len, setLen] = useState(0);
+
+  const applyScore = async () => {
+    let res = {} as { [key: number]: number };
+    images.forEach((image) => {
+      res[image.id] = image.selected * 10;
+    });
+
+    fetch(`${process.env.NEXT_PUBLIC_API_HOST}/${router.query.gameId}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: name,
+        photos: res,
+      }),
+    }).then(() => router.push(`/game/${router.query.gameId}/result/my`));
+  };
 
   const fetchData = useCallback(async () => {
     try {
@@ -71,7 +87,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (len === 1) {
-      router.push(`/game/${router.query.gameId}/result/my`);
+      applyScore();
     }
   }, [len]);
 

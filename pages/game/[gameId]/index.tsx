@@ -7,9 +7,10 @@ import { Layout } from "../../../components/Layout";
 import { useData } from "../../../hooks/useData";
 import styles from "../../../styles/Intro.module.scss";
 import common from "../../../styles/Common.module.scss";
+import { useResult } from "../../../hooks/useResult";
 
 const Home: NextPage = () => {
-  const [name, setName] = useState("");
+  const { name, setName } = useResult();
   const router = useRouter();
   const [data, setData] = useState(null as any);
 
@@ -53,7 +54,7 @@ const Home: NextPage = () => {
               placeholder="입력해주세요."
               minLength={1}
               maxLength={10}
-              value={name}
+              defaultValue={name}
               onChange={(e) => setName(e.target.value)}
             />
             <div className={styles.addProfile}>
