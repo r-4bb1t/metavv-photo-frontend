@@ -68,7 +68,9 @@ const Home: NextPage = () => {
             <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
           </div>
         </div>
-        <button className={common.button}>전체 결과 보러가기</button>
+        <Link href={`/game/${router.query.gameId}/result/all`}>
+          <a className={common.button}>전체 결과 보러가기</a>
+        </Link>
         <Link href={`/game/${router.query.gameId}`}>
           <a className={common.borderedButton}>
             <div>투표 다시하기</div>
