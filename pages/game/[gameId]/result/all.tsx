@@ -46,7 +46,7 @@ const Home: NextPage = () => {
             </div>
             <div className={styles.photolist} key={`photolist${i}`}>
               {d.map((dd, ii) => (
-                <div className={styles.photoitem} key={`item${ii}`}>
+                <div className={styles.photoitem} key={`item${i}-${ii}`}>
                   <div className={styles.photo}>
                     <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
                   </div>
