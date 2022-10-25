@@ -110,7 +110,7 @@ const Home: NextPage = () => {
                   setRound((r) => r + 1);
                   setImages((images) =>
                     images.map((image) => {
-                      if (image.id === selected[round * 2 + 1].id)
+                      if (image.id === selected[round * 2].id)
                         return { ...image, score: image.score + 1 };
                       return image;
                     })
