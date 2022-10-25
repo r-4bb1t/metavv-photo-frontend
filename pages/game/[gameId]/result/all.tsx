@@ -80,7 +80,11 @@ const Home: NextPage = () => {
           <img className={styles.img2} src="/assets/introPage/사진.png" />
         </div>
 
-        <button className={common.borderedButton}>나만의 프레임 만들기</button>
+        <Link href={`/game/${router.query.gameId}/result/frame`}>
+          <button className={common.borderedButton}>
+            나만의 프레임 만들기
+          </button>
+        </Link>
       </div>
     </Layout>
   );

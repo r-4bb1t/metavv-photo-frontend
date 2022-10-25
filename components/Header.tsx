@@ -1,11 +1,24 @@
 import { useRouter } from "next/router";
 import styles from "../styles/Header.module.scss";
 
-export const Header = ({ title }: { title: string }) => {
+export const Header = ({
+  title,
+  white = false,
+  back = null,
+}: {
+  title: string;
+  white?: boolean;
+  back?: Function | null;
+}) => {
   const router = useRouter();
   return (
-    <header className={styles.header}>
-      <button onClick={() => router.back()}>
+    <header className={`${styles.header} ${white ? styles.white : ""}`}>
+      <button
+        onClick={() => {
+          if (back) back();
+          else router.back();
+        }}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="10"
