@@ -4,10 +4,6 @@ import { Photo } from "../contexts/resultContext";
 import { useResult } from "../hooks/useResult";
 import styles from "../styles/Result.module.scss";
 
-interface PhotoWithRank extends Photo {
-  rank: number;
-}
-
 export const MyResult = ({
   select = (url: string) => {},
 }: {
@@ -15,7 +11,7 @@ export const MyResult = ({
 }) => {
   const { images } = useResult();
   const router = useRouter();
-  const [sortedImages, setSortedImages] = useState([] as PhotoWithRank[][]);
+  const [sortedImages, setSortedImages] = useState([] as Photo[][]);
 
   useEffect(() => {
     let d = images.sort((a, b) => -a.selected + b.selected);
