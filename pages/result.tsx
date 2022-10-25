@@ -27,30 +27,46 @@ const Home: NextPage = () => {
         <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
         <div className={styles.title}>4강 진출</div>
         <div className={styles.photolist}>
-          <div className={styles.photo}>
-            <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+          <div className={styles.photoitem}>
+            <div className={styles.photo}>
+              <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+            </div>
+            <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
           </div>
-          <div className={styles.photo}>
-            <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+          <div className={styles.photoitem}>
+            <div className={styles.photo}>
+              <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+            </div>
+            <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
           </div>
         </div>
-        <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
         <div className={styles.title}>8강 진출</div>
         <div className={styles.photolist}>
-          <div className={styles.photo}>
-            <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+          <div className={styles.photoitem}>
+            <div className={styles.photo}>
+              <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+            </div>
+            <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
           </div>
-          <div className={styles.photo}>
-            <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+          <div className={styles.photoitem}>
+            <div className={styles.photo}>
+              <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+            </div>
+            <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
           </div>
-          <div className={styles.photo}>
-            <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+          <div className={styles.photoitem}>
+            <div className={styles.photo}>
+              <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+            </div>
+            <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
           </div>
-          <div className={styles.photo}>
-            <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+          <div className={styles.photoitem}>
+            <div className={styles.photo}>
+              <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+            </div>
+            <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
           </div>
         </div>
-        <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
       </div>
     </Layout>
   );

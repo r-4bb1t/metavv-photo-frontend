@@ -29,6 +29,11 @@ $primary: #ffb800;
   }
 }
 
+.photoitem {
+  width: 100%;
+  flex-shrink: 0;
+}
+
 .photolist {
   display: flex;
   margin: 0 -48px;
