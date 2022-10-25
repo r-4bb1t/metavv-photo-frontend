@@ -8,7 +8,6 @@ import { useData } from "../../hooks/useData";
 import styles from "../../styles/GamePage.module.scss";
 import Modal from "../../components/Modal";
 
-
 const Footer = () => {
     const router = useRouter();
     return(
@@ -32,22 +31,24 @@ const Home: NextPage = () => {
     let [image, setImage] = useState(images[0]);
 
     return(
-        <Layout footer={<Footer></Footer>} noBackground>       
+        <Layout footer={<Footer></Footer>} noBackground>
+            
                 <div className={styles.contents}>
                         <div className={styles.img1Area}>
-                            <div className={styles.img1Border}>
+                            <div className={styles.imgBorder1}>
                                 <img className={styles.img1} src={images[0]}></img>
                             </div>
                             <img className={styles.mag1} onClick={()=>{setModal(!modal); setImage(images[0])}} src="/assets/gamePage/확대.svg"></img>
                         </div>
                         
                         <div className={styles.img2Area}>
-                            <div className={styles.img2Border}>
+                            <div className={styles.imgBorder2}>
                                 <img className={styles.img2} src={images[1]}></img>
                             </div>
                             <img className={styles.mag2} onClick={()=>{setModal(!modal); setImage(images[1])}} src="/assets/gamePage/확대.svg"></img>
                         </div>
                         <img className={styles.vs} src="/assets/gamePage/vs.png"></img>
+                   
                     {
                     modal == true ? <Modal closeModal={() => setModal(!modal)} image={image}></Modal> : null
                     }
@@ -58,49 +59,3 @@ const Home: NextPage = () => {
 
 export default Home;
 
-
-
-/*
-    return(
-        <Layout footer={<Footer></Footer>} noBackground>
-                <div className={styles.contents}>
-                    <div className={styles.imageBox}>
-                        <div className={styles.img1Area}>
-                            <div id={styles.imgBorder1}>
-                                <img className={styles.img1} src={images[0]}></img>
-                            </div>
-                            <img className={styles.mag1} onClick={()=>{setModal(!modal); setImage(images[0])}} src="/assets/gamePage/확대.svg"></img>
-
-                        </div>
-                        <div className={styles.img2Area}>
-                            <div id={styles.imgBorder2}>
-                                <img className={styles.img2} src={images[1]}></img>
-                            </div>
-                            <img className={styles.mag2} onClick={()=>{setModal(!modal); setImage(images[1])}} src="/assets/gamePage/확대.svg"></img>
-                        </div>
-                          <img className={styles.vs} src="/assets/gamePage/vs.png"></img>
-                    </div>
-                    {
-                    modal == true ? <Modal closeModal={() => setModal(!modal)} image={image}></Modal> : null
-                    }
-                </div>
-        </Layout>
-    )
-*/
-
-
-/*
-<div className={styles.img1Area}>
-                            <div id={styles.imgBorder1}>
-                                <img className={styles.img1} src={images[0]}></img>
-                            </div>
-                            <img className={styles.mag1} onClick={()=>{setModal(!modal); setImage(images[0])}} src="/assets/gamePage/확대.svg"></img>
-                        </div>
-
-                        <div className={styles.img2Area}>
-                            <div id={styles.imgBorder1}>
-                                <img className={styles.img1} src={images[0]}></img>
-                            </div>
-                            <img className={styles.mag1} onClick={()=>{setModal(!modal); setImage(images[0])}} src="/assets/gamePage/확대.svg"></img>
-                        </div>
-*/
