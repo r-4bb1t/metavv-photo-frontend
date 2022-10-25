@@ -3,9 +3,9 @@ import { FetchEventResult } from "next/dist/server/web/types";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { Layout } from "../../components/Layout";
-import { useData } from "../../hooks/useData";
-import styles from "../../styles/Intro.module.scss";
+import { Layout } from "../../../components/Layout";
+import { useData } from "../../../hooks/useData";
+import styles from "../../../styles/Intro.module.scss";
 
 const Home: NextPage = () => {
   const [name, setName] = useState("");
