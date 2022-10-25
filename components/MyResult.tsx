@@ -11,20 +11,24 @@ export const MyResult = ({
       <div
         className={styles.photo}
         onClick={() =>
-          select("https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg")
+          select(
+            "https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif"
+          )
         }
       >
-        <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+        <img src="https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif" />
       </div>
       <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
       <div className={styles.title}>결승 진출</div>
       <div
         className={styles.photo}
         onClick={() =>
-          select("https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg")
+          select(
+            "https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif"
+          )
         }
       >
-        <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+        <img src="https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif" />
       </div>
       <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
       <div className={styles.title}>4강 진출</div>
@@ -32,22 +36,26 @@ export const MyResult = ({
         <div
           className={styles.photoitem}
           onClick={() =>
-            select("https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg")
+            select(
+              "https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif"
+            )
           }
         >
           <div className={styles.photo}>
-            <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+            <img src="https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif" />
           </div>
           <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
         </div>
         <div
           className={styles.photoitem}
           onClick={() =>
-            select("https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg")
+            select(
+              "https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif"
+            )
           }
         >
           <div className={styles.photo}>
-            <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+            <img src="https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif" />
           </div>
           <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
         </div>
@@ -57,44 +65,52 @@ export const MyResult = ({
         <div
           className={styles.photoitem}
           onClick={() =>
-            select("https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg")
+            select(
+              "https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif"
+            )
           }
         >
           <div className={styles.photo}>
-            <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+            <img src="https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif" />
           </div>
           <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
         </div>
         <div
           className={styles.photoitem}
           onClick={() =>
-            select("https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg")
+            select(
+              "https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif"
+            )
           }
         >
           <div className={styles.photo}>
-            <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+            <img src="https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif" />
           </div>
           <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
         </div>
         <div
           className={styles.photoitem}
           onClick={() =>
-            select("https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg")
+            select(
+              "https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif"
+            )
           }
         >
           <div className={styles.photo}>
-            <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+            <img src="https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif" />
           </div>
           <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
         </div>
         <div
           className={styles.photoitem}
           onClick={() =>
-            select("https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg")
+            select(
+              "https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif"
+            )
           }
         >
           <div className={styles.photo}>
-            <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+            <img src="https://metavv-photo.s3.ap-northeast-2.amazonaws.com/contents/1666660691189_img.gif" />
           </div>
           <div className={styles.ranking}>실시간 전체 랭킹 1위</div>
         </div>

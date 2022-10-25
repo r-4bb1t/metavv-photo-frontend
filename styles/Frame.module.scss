@@ -12,6 +12,10 @@
   overflow-x: auto;
 }
 
+.frameContainer {
+  box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
 .frame {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -22,8 +26,6 @@
   grid-template-rows: 1fr 1fr;
   gap: 1%;
   padding: 10%;
-
-  box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .frameThumbnail {

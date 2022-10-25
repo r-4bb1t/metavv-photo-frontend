@@ -1,15 +1,16 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Header } from "../../../../components/Header";
 import { Layout } from "../../../../components/Layout";
 import { MyResult } from "../../../../components/MyResult";
 import { useData } from "../../../../hooks/useData";
 import styles from "../../../../styles/Frame.module.scss";
+import html2canvas from "html2canvas";
 
-const Footer = () => (
-  <button className={styles.footer}>
+const Footer = ({ handleDownload }: { handleDownload: Function }) => (
+  <button className={styles.footer} onClick={() => handleDownload()}>
     <div>나만의 프레임 이미지 저장</div>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -46,18 +47,23 @@ const Home: NextPage = () => {
     | null
     | string
   )[]);
+  const frameRef = useRef<HTMLDivElement>(null);
 
   const handleDownload = () => {
-    /*     const canvas = document.createElement("canvas");
-
-    const ctx = canvas.getContext("2d");
-    canvas.width = canvas.height = 512;
-
-    let imgageData = canvas.toDataURL("image/png");
-    let a = document.createElement("a");
-    a.href = imgageData; //Image Base64 Goes here
-    a.download = "Image.png"; //File name Here
-    a.click(); */
+    if (!frameRef.current) return;
+    document.querySelectorAll("img").forEach((img) => {
+      img.setAttribute("src", `${img.src}?random=${Math.random()}`);
+    });
+    html2canvas(frameRef.current, {
+      scale: 10,
+      useCORS: true,
+    }).then((canvas) => {
+      let imgageData = canvas.toDataURL("image/png", 1);
+      let a = document.createElement("a");
+      a.href = imgageData; //Image Base64 Goes here
+      a.download = "Image.png"; //File name Here
+      a.click();
+    });
   };
 
   useEffect(() => {
@@ -66,51 +72,61 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Layout footer={<Footer />} noBackground white>
+      <Layout
+        footer={<Footer handleDownload={handleDownload} />}
+        noBackground
+        white
+      >
         <Header title="프레임 만들기" white />
         <div className={styles.main}>
-          <div
-            className={styles.frame}
-            style={{
-              backgroundImage: `url(/assets/frames/${selectedFrame + 1}.png)`,
-            }}
-          >
-            {photos.map((p, i) => (
-              <div
-                className={styles.item}
-                key={i}
-                onClick={() => setIsModalOpen(i)}
-              >
-                {p ? (
-                  <img src={p} />
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="31"
-                    height="30"
-                    viewBox="0 0 31 30"
-                    fill="none"
-                  >
-                    <mask
-                      id="mask0_153_3315"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
+          <div className={styles.frameContainer}>
+            <div
+              className={styles.frame}
+              ref={frameRef}
+              style={{
+                backgroundImage: `url(/assets/frames/${selectedFrame + 1}.png)`,
+              }}
+            >
+              {photos.map((p, i) => (
+                <div
+                  className={styles.item}
+                  key={i}
+                  onClick={() => setIsModalOpen(i)}
+                >
+                  {p ? (
+                    <img
+                      src={`${p}?random=${Math.random()}`}
+                      crossOrigin="anonymous"
+                    />
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
                       width="31"
                       height="30"
+                      viewBox="0 0 31 30"
+                      fill="none"
                     >
-                      <rect x="0.5" width="30" height="30" fill="#D9D9D9" />
-                    </mask>
-                    <g mask="url(#mask0_153_3315)">
-                      <path
-                        d="M15.5 23.75C14.8096 23.75 14.25 23.1904 14.25 22.5V16.25H8C7.30964 16.25 6.75 15.6904 6.75 15C6.75 14.3096 7.30964 13.75 8 13.75H14.25V7.5C14.25 6.80964 14.8096 6.25 15.5 6.25C16.1904 6.25 16.75 6.80964 16.75 7.5V13.75H23C23.6904 13.75 24.25 14.3096 24.25 15C24.25 15.6904 23.6904 16.25 23 16.25H16.75V22.5C16.75 23.1904 16.1904 23.75 15.5 23.75Z"
-                        fill="white"
-                      />
-                    </g>
-                  </svg>
-                )}
-              </div>
-            ))}
+                      <mask
+                        id="mask0_153_3315"
+                        maskUnits="userSpaceOnUse"
+                        x="0"
+                        y="0"
+                        width="31"
+                        height="30"
+                      >
+                        <rect x="0.5" width="30" height="30" fill="#D9D9D9" />
+                      </mask>
+                      <g mask="url(#mask0_153_3315)">
+                        <path
+                          d="M15.5 23.75C14.8096 23.75 14.25 23.1904 14.25 22.5V16.25H8C7.30964 16.25 6.75 15.6904 6.75 15C6.75 14.3096 7.30964 13.75 8 13.75H14.25V7.5C14.25 6.80964 14.8096 6.25 15.5 6.25C16.1904 6.25 16.75 6.80964 16.75 7.5V13.75H23C23.6904 13.75 24.25 14.3096 24.25 15C24.25 15.6904 23.6904 16.25 23 16.25H16.75V22.5C16.75 23.1904 16.1904 23.75 15.5 23.75Z"
+                          fill="white"
+                        />
+                      </g>
+                    </svg>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className={styles.title}>프레임 선택</div>
