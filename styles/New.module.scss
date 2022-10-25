@@ -1,6 +1,7 @@
 $primary: #ffb800;
 
 .main {
+  padding-bottom: 4rem;
 }
 
 .title {
@@ -102,7 +103,7 @@ $primary: #ffb800;
   color: #0c0c0c;
 }
 
-.imageReset{
+.imageReset {
   text-align: center;
   padding-top: 12px;
   padding-bottom: 12px;
@@ -110,7 +111,7 @@ $primary: #ffb800;
   margin-top: 10px;
 }
 
-.reset{
+.reset {
   display: inline-block;
   font-weight: 400;
   font-size: 16px;
@@ -121,7 +122,7 @@ $primary: #ffb800;
   top: 1px;
 }
 
-.resetButton{
+.resetButton {
   display: inline-block;
   width: 24px;
   height: 24px;
@@ -130,7 +131,7 @@ $primary: #ffb800;
   margin-left: 4px;
 }
 
-.resetButton img{
+.resetButton img {
   width: 14.9px;
   height: 15px;
   position: absolute;
