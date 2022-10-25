@@ -48,7 +48,13 @@ export const MyResult = ({
     <div className={styles.main}>
       {sortedImages.map((list, i) => (
         <>
-          <div className={styles.title}>{Math.pow(2, i)}강 진출</div>
+          <div className={styles.title}>
+            {i === 0
+              ? "최종 우승"
+              : i === 1
+              ? "결승 진출"
+              : Math.pow(2, i) + "강 진출"}
+          </div>
           <div className={styles.photolist}>
             {list.map((image) => (
               <div
