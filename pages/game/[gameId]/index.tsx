@@ -3,10 +3,10 @@ import { FetchEventResult } from "next/dist/server/web/types";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { Layout } from "../../components/Layout";
-import { useData } from "../../hooks/useData";
-import styles from "../../styles/Intro.module.scss";
-import common from "../../styles/Common.module.scss";
+import { Layout } from "../../../components/Layout";
+import { useData } from "../../../hooks/useData";
+import styles from "../../../styles/Intro.module.scss";
+import common from "../../../styles/Common.module.scss";
 
 const Home: NextPage = () => {
   const [name, setName] = useState("");
@@ -68,7 +68,7 @@ const Home: NextPage = () => {
         <Link href="/game/gamePage">
           <a className={common.button}>포토 월드컵 투표하기</a>
         </Link>
-        <button className={common.borderedbutton}>전체 결과 바로보기</button>
+        <button className={common.borderedButton}>전체 결과 바로보기</button>
       </div>
     </Layout>
   );

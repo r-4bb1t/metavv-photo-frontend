@@ -1,4 +1,7 @@
 .container {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -37,6 +40,10 @@
   grid-template-columns: 34px 1fr 34px;
   grid-template-rows: 34px 1fr 34px;
   place-items: center;
+}
+
+.white {
+  background: white;
 }
 
 .footer {

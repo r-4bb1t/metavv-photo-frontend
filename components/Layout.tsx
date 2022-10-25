@@ -6,10 +6,12 @@ export const Layout = ({
   children,
   footer,
   noBackground = false,
+  white = false,
 }: {
   children: ReactNode;
   footer?: ReactNode;
   noBackground?: boolean;
+  white?: boolean;
 }) => {
   return (
     <div className={styles.container}>
@@ -26,7 +28,9 @@ export const Layout = ({
           <img src="/assets/bottomright.png" />
         </div>
       )}
-      <main className={styles.main}>{children}</main>
+      <main className={`${styles.main} ${white ? styles.white : ""}`}>
+        {children}
+      </main>
       <footer className={styles.footer}>{footer}</footer>
     </div>
   );

@@ -1,0 +1,87 @@
+.main {
+  padding: 0 8px;
+  padding-top: 48px;
+}
+
+.framelist {
+  display: flex;
+  margin: 0 -48px;
+  padding: 0 48px;
+  gap: 10px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.frameContainer {
+  box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.frame {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-position: center;
+  background-size: cover;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1%;
+  padding: 10%;
+}
+
+.frameThumbnail {
+  width: 100px;
+  height: 100px;
+  box-shadow: none;
+}
+
+.item {
+  width: 100%;
+  height: 100%;
+  background-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  color: black;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+.footer {
+  width: 100%;
+  height: 100%;
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  gap: 4px;
+}
+
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 0 8px;
+  padding-top: 48px;
+}

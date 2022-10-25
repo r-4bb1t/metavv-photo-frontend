@@ -1,4 +1,4 @@
-$primary: #731e96;
+$primary: #ffb800;
 
 .square {
   width: calc(100% + 4rem);
@@ -8,10 +8,33 @@ $primary: #731e96;
 
 .button {
   width: 100%;
-  border-radius: 9999px;
+  border-radius: 8px;
   background-color: $primary;
   height: 50px;
-  color: white;
-  margin: 2rem 0;
+  margin-top: 16px;
+  color: black;
+  font-weight: 500;
   border: none;
+  font-size: 14px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.borderedButton {
+  width: 100%;
+  border-radius: 8px;
+  background-color: #0c0c0c;
+  height: 50px;
+  color: $primary;
+  margin-top: 16px;
+  font-weight: 500;
+  border: 1px solid $primary;
+  font-size: 14px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }

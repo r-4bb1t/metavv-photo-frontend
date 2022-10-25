@@ -1,0 +1,24 @@
+.header {
+  height: 48px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.white {
+  color: black;
+  path {
+    fill: black;
+  }
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+}
