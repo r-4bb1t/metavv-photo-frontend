@@ -7,8 +7,10 @@ import { Layout } from "../../../components/Layout";
 import { useData } from "../../../hooks/useData";
 import styles from "../../../styles/GamePage.module.scss";
 import Modal from "../../../components/Modal";
+import { Photo } from "../../../contexts/resultContext";
+import { useResult } from "../../../hooks/useResult";
 
-const Footer = () => {
+const Footer = ({ len }: { len: number }) => {
   const router = useRouter();
   return (
     <div className={styles.footerBox}>
@@ -16,7 +18,7 @@ const Footer = () => {
         <button className={styles.button} onClick={() => router.back()}>
           이전
         </button>
-        <span>16강</span>
+        <span>{len > 2 ? len + "강" : "결승"}</span>
       </div>
       <div className={styles.stateBar}>
         <div className={styles.state}></div>
@@ -26,9 +28,14 @@ const Footer = () => {
 };
 const Home: NextPage = () => {
   const [modal, setModal] = useState(false);
-  const [images, setImages] = useState([] as { id: number; img: string }[]);
   const [image, setImage] = useState("");
   const router = useRouter();
+
+  const { setImages } = useResult();
+  const [next, setNext] = useState([] as Photo[]);
+  const [selected, setSelected] = useState([] as Photo[]);
+  const [round, setRound] = useState(0);
+  const [len, setLen] = useState(0);
 
   const fetchData = useCallback(async () => {
     try {
@@ -38,44 +45,101 @@ const Home: NextPage = () => {
         )
       ).json();
 
-      setImages(result.photos);
+      const sorted = result.photos
+        .sort(() => 0.5 - Math.random())
+        .map((photo: Photo) => {
+          return { ...photo, selected: 0 };
+        });
+
+      setImages(sorted);
+      setSelected(sorted);
+      setNext(sorted);
+      setRound(0);
+      setLen(sorted.length);
     } catch (e) {
       console.log(e);
     }
   }, [router]);
 
   useEffect(() => {
+    if (round * 2 === len) {
+      setSelected(next.sort(() => 0.5 - Math.random()));
+      setLen((len) => len / 2);
+      setRound(0);
+    }
+  }, [round]);
+
+  useEffect(() => {
+    if (len === 1) {
+      router.push(`/game/${router.query.gameId}/result/my`);
+    }
+  }, [len]);
+
+  useEffect(() => {
     if (router.query.gameId) fetchData();
   }, [fetchData, router]);
 
   return (
-    <Layout footer={<Footer></Footer>} noBackground>
+    <Layout footer={<Footer len={len} />} noBackground>
       <div className={styles.contents}>
-        {images.length > 0 && (
+        {selected[round * 2] && selected[round * 2 + 1] && (
           <>
             <div className={styles.img1Area}>
-              <div className={styles.imgBorder1}>
-                <img className={styles.img1} src={images[0].img} />
+              <div
+                className={styles.imgBorder1}
+                onClick={() => {
+                  setNext((next) =>
+                    next.filter((n) => n.id !== selected[round * 2 + 1].id)
+                  );
+                  setRound((r) => r + 1);
+                  setImages((images) =>
+                    images.map((image) => {
+                      if (image.id === selected[round * 2 + 1].id)
+                        return { ...image, selected: image.selected + 1 };
+                      return image;
+                    })
+                  );
+                }}
+              >
+                <img className={styles.img1} src={selected[round * 2].img} />
               </div>
               <img
                 className={styles.mag1}
                 onClick={() => {
                   setModal((modal) => !modal);
-                  setImage(images[0].img);
+                  setImage(selected[round * 2].img);
                 }}
                 src="/assets/gamePage/확대.svg"
               />
             </div>
 
             <div className={styles.img2Area}>
-              <div className={styles.imgBorder2}>
-                <img className={styles.img2} src={images[1].img} />
+              <div
+                className={styles.imgBorder2}
+                onClick={() => {
+                  setNext((next) =>
+                    next.filter((n) => n.id !== selected[round * 2].id)
+                  );
+                  setRound((r) => r + 1);
+                  setImages((images) =>
+                    images.map((image) => {
+                      if (image.id === selected[round * 2 + 1].id)
+                        return { ...image, selected: image.selected + 1 };
+                      return image;
+                    })
+                  );
+                }}
+              >
+                <img
+                  className={styles.img2}
+                  src={selected[round * 2 + 1].img}
+                />
               </div>
               <img
                 className={styles.mag2}
                 onClick={() => {
                   setModal((modal) => !modal);
-                  setImage(images[1].img);
+                  setImage(selected[round * 2 + 1].img);
                 }}
                 src="/assets/gamePage/확대.svg"
               />
