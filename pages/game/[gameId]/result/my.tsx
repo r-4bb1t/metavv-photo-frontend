@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Header } from "../../../../components/Header";
 import { Layout } from "../../../../components/Layout";
-import { useData } from "../../../../hooks/useData";
 import styles from "../../../../styles/Result.module.scss";
 import common from "../../../../styles/Common.module.scss";
 import { MyResult } from "../../../../components/MyResult";

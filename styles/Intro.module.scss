@@ -215,33 +215,3 @@
   letter-spacing: -0.2px;
   color: rgba($color: #ffffff, $alpha: 0.5);
 }
-
-.votingBtn {
-  margin-top: 30px;
-  width: 335px;
-  height: 48px;
-  background: #ffb800;
-  border-radius: 8px;
-  border: 0;
-  padding: 0px 12px;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  font-style: normal;
-}
-
-.resultBtn {
-  width: 335px;
-  height: 48px;
-  background: #0c0c0c;
-  border: 1px solid #ffb800;
-  border-radius: 8px;
-  padding: 0px 12px;
-  gap: 4px;
-  margin-top: 16px;
-  color: #ffb800;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 20px;
-}
