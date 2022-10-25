@@ -7,7 +7,7 @@ import { Layout } from "../../../../components/Layout";
 import { MyResult } from "../../../../components/MyResult";
 import { useData } from "../../../../hooks/useData";
 import styles from "../../../../styles/Frame.module.scss";
-import html2canvas from "html2canvas";
+import domtoimage from "dom-to-image";
 
 const Footer = ({ handleDownload }: { handleDownload: Function }) => (
   <button className={styles.footer} onClick={() => handleDownload()}>
@@ -51,18 +51,15 @@ const Home: NextPage = () => {
 
   const handleDownload = () => {
     if (!frameRef.current) return;
-    document.querySelectorAll("img").forEach((img) => {
-      img.setAttribute("src", `${img.src}?random=${Math.random()}`);
-    });
-    html2canvas(frameRef.current, {
-      scale: 10,
-      useCORS: true,
-    }).then((canvas) => {
-      let imgageData = canvas.toDataURL("image/png", 1);
+    frameRef.current.parentElement!.style.width = "1000px";
+    frameRef.current.parentElement!.style.height = "1000px";
+    domtoimage.toPng(frameRef.current, { quality: 10 }).then((dataUrl) => {
       let a = document.createElement("a");
-      a.href = imgageData; //Image Base64 Goes here
+      a.href = dataUrl; //Image Base64 Goes here
       a.download = "Image.png"; //File name Here
       a.click();
+      frameRef.current!.parentElement!.style.width = "100%";
+      frameRef.current!.parentElement!.style.height = "100%";
     });
   };
 
