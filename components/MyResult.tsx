@@ -35,7 +35,7 @@ export const MyResult = ({
           `${process.env.NEXT_PUBLIC_API_HOST}/${router.query.gameId}/result`
         )
       ).json();
-      setAll(result.photos);
+      setAll(result.photos.sort((a: Photo, b: Photo) => -a.score + b.score));
     } catch (e) {
       console.log(e);
     }
