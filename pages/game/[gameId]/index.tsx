@@ -54,7 +54,7 @@ const Home: NextPage = () => {
               placeholder="입력해주세요."
               minLength={1}
               maxLength={10}
-              defaultValue={name}
+              value={name}
               onChange={(e) => setName(e.target.value)}
             />
             <div className={styles.addProfile}>

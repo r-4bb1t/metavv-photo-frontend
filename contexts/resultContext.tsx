@@ -9,7 +9,7 @@ import {
 export interface Photo {
   id: number;
   img: string;
-  selected: number;
+  score: number;
 }
 
 interface ResultContextProps {

@@ -16,15 +16,16 @@ export const MyResult = ({
 
   useEffect(() => {
     if (images.length === 0) return;
-    let d = images.sort((a, b) => -a.selected + b.selected);
+    let d = images.sort((a, b) => -a.score + b.score);
     let newData = [];
     newData.push([d[0]]);
     for (let i = 1; i < d.length; i++) {
-      if (newData[newData.length - 1][0].selected === d[i].selected) {
+      if (newData[newData.length - 1][0].score === d[i].score) {
         newData[newData.length - 1].push(d[i]);
       } else newData.push([d[i]]);
     }
     setSortedImages(newData);
+    console.log(newData);
   }, [images]);
 
   const fetchData = useCallback(async () => {
@@ -48,18 +49,18 @@ export const MyResult = ({
     <div className={styles.main}>
       {sortedImages.map((list, i) => (
         <>
-          <div className={styles.title}>
+          <div className={styles.title} key={`title${i}`}>
             {i === 0
               ? "최종 우승"
               : i === 1
               ? "결승 진출"
               : Math.pow(2, i) + "강 진출"}
           </div>
-          <div className={styles.photolist}>
-            {list.map((image) => (
+          <div className={styles.photolist} key={`photolist${i}`}>
+            {list.map((image, ii) => (
               <div
                 className={styles.photoitem}
-                key={image.id}
+                key={`img${image.id}${ii}`}
                 onClick={() => select(image.img)}
               >
                 <div className={styles.photo}>

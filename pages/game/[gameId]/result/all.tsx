@@ -1,39 +1,47 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Header } from "../../../../components/Header";
 import { Layout } from "../../../../components/Layout";
-import { useData } from "../../../../hooks/useData";
 import styles from "../../../../styles/Result.module.scss";
 import common from "../../../../styles/Common.module.scss";
-
-const dummy = [
-  { id: 1, result: 100 },
-  { id: 2, result: 88 },
-  { id: 3, result: 10 },
-  { id: 4, result: 10 },
-];
+import { Photo } from "../../../../contexts/resultContext";
 
 const Home: NextPage = () => {
-  const { name, images, setImages, len, setLen } = useData();
   const router = useRouter();
+  const [images, setImages] = useState([] as Photo[]);
+  const [sortedData, setSortedData] = useState([] as Photo[][]);
 
-  const [sortedData, setSortedData] = useState(
-    [] as { id: number; result: number }[][]
-  );
+  const fetchData = useCallback(async () => {
+    try {
+      const result = await (
+        await fetch(
+          `${process.env.NEXT_PUBLIC_API_HOST}/${router.query.gameId}/result`
+        )
+      ).json();
+      setImages(result.photos);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [router]);
 
   useEffect(() => {
-    let d = dummy.sort((a, b) => -a.result + b.result);
+    if (router.query.gameId) fetchData();
+  }, [router, fetchData]);
+
+  useEffect(() => {
+    if (images.length === 0) return;
+    let d = images.sort((a, b) => -a.score + b.score);
     let newData = [];
     newData.push([d[0]]);
     for (let i = 1; i < d.length; i++) {
-      if (newData[newData.length - 1][0].result === d[i].result) {
+      if (newData[newData.length - 1][0].score === d[i].score) {
         newData[newData.length - 1].push(d[i]);
       } else newData.push([d[i]]);
     }
     setSortedData(newData);
-  }, [dummy]);
+  }, [images]);
 
   return (
     <Layout footer={<></>} noBackground>
@@ -48,9 +56,9 @@ const Home: NextPage = () => {
               {d.map((dd, ii) => (
                 <div className={styles.photoitem} key={`item${i}-${ii}`}>
                   <div className={styles.photo}>
-                    <img src="https://i.ytimg.com/vi/1roy4o4tqQM/maxresdefault.jpg" />
+                    <img src={dd.img} />
                   </div>
-                  <div className={styles.ranking}>{dd.result}표</div>
+                  <div className={styles.ranking}>{dd.score}표</div>
                 </div>
               ))}
             </div>

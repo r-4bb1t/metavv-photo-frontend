@@ -40,7 +40,7 @@ const Home: NextPage = () => {
   const applyScore = async () => {
     let res = {} as { [key: number]: number };
     images.forEach((image) => {
-      res[image.id] = image.selected * 10;
+      res[image.id] = image.score;
     });
 
     fetch(`${process.env.NEXT_PUBLIC_API_HOST}/${router.query.gameId}`, {
@@ -64,7 +64,7 @@ const Home: NextPage = () => {
       const sorted = result.photos
         .sort(() => 0.5 - Math.random())
         .map((photo: Photo) => {
-          return { ...photo, selected: 0 };
+          return { ...photo, score: 0 };
         });
 
       setImages(sorted);
@@ -111,7 +111,7 @@ const Home: NextPage = () => {
                   setImages((images) =>
                     images.map((image) => {
                       if (image.id === selected[round * 2 + 1].id)
-                        return { ...image, selected: image.selected + 1 };
+                        return { ...image, score: image.score + 1 };
                       return image;
                     })
                   );
@@ -140,7 +140,7 @@ const Home: NextPage = () => {
                   setImages((images) =>
                     images.map((image) => {
                       if (image.id === selected[round * 2 + 1].id)
-                        return { ...image, selected: image.selected + 1 };
+                        return { ...image, score: image.score + 1 };
                       return image;
                     })
                   );
