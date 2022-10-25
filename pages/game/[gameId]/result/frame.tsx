@@ -47,6 +47,19 @@ const Home: NextPage = () => {
     | string
   )[]);
 
+  const handleDownload = () => {
+    /*     const canvas = document.createElement("canvas");
+
+    const ctx = canvas.getContext("2d");
+    canvas.width = canvas.height = 512;
+
+    let imgageData = canvas.toDataURL("image/png");
+    let a = document.createElement("a");
+    a.href = imgageData; //Image Base64 Goes here
+    a.download = "Image.png"; //File name Here
+    a.click(); */
+  };
+
   useEffect(() => {
     setIsModalOpen(null);
   }, [photos]);
