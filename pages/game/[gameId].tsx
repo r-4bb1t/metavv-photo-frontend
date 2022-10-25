@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Layout } from "../../components/Layout";
 import { useData } from "../../hooks/useData";
 import styles from "../../styles/Intro.module.scss";
+import common from "../../styles/Common.module.scss";
 
 const Home: NextPage = () => {
   const [name, setName] = useState("");
@@ -64,8 +65,10 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
-        <button className={styles.votingBtn}>포토 월드컵 투표하기</button>
-        <button className={styles.resultBtn}>전체 결과 바로보기</button>
+        <Link href="/game/gamePage">
+          <a className={common.button}>포토 월드컵 투표하기</a>
+        </Link>
+        <button className={common.borderedbutton}>전체 결과 바로보기</button>
       </div>
     </Layout>
   );
