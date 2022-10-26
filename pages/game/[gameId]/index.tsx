@@ -29,7 +29,9 @@ const Home: NextPage = () => {
   }, [router]);
 
   useEffect(() => {
-    if (router.query.gameId) fetchData();
+    if (router.query.gameId) {
+      fetchData();
+    }
   }, [fetchData, router.query.gameId]);
 
   return (

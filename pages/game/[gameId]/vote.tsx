@@ -95,7 +95,9 @@ const Home: NextPage = () => {
   }, [len]);
 
   useEffect(() => {
-    if (router.query.gameId) fetchData();
+    if (router.query.gameId) {
+      fetchData();
+    }
   }, [fetchData, router]);
 
   return (

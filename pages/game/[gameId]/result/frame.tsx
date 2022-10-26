@@ -157,7 +157,9 @@ const Home: NextPage = () => {
                     photos.map((photo, i) => {
                       if (i === isModalOpen) {
                         return url;
-                      } else return photo;
+                      } else {
+                        return photo;
+                      }
                     })
                   );
                 }}

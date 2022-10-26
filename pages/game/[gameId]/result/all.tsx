@@ -27,7 +27,9 @@ const Home: NextPage = () => {
   }, [router]);
 
   useEffect(() => {
-    if (router.query.gameId) fetchData();
+    if (router.query.gameId) {
+      fetchData();
+    }
   }, [router, fetchData]);
 
   useEffect(() => {
@@ -38,7 +40,9 @@ const Home: NextPage = () => {
     for (let i = 1; i < d.length; i++) {
       if (newData[newData.length - 1][0].score === d[i].score) {
         newData[newData.length - 1].push(d[i]);
-      } else newData.push([d[i]]);
+      } else {
+        newData.push([d[i]]);
+      }
     }
     setSortedData(newData);
   }, [images]);

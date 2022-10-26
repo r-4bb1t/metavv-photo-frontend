@@ -59,7 +59,9 @@ const UploadButton = ({ handleFileUpload }: { handleFileUpload: Function }) => (
       type="file"
       accept="image/*"
       onChange={(e) => {
-        if (e.target.files) handleFileUpload(e.target.files[0]);
+        if (e.target.files) {
+          handleFileUpload(e.target.files[0]);
+        }
       }}
     />
   </label>
@@ -94,8 +96,11 @@ const Home: NextPage = () => {
         method: "POST",
         body: data,
       }).catch((e) => {
-        if (e.code == 413) alert("파일 크기가 너무 큽니다.");
-        else alert("문제가 발생했습니다. 잠시 후 다시 시도해주세요.");
+        if (e.code == 413) {
+          alert("파일 크기가 너무 큽니다.");
+        } else {
+          alert("문제가 발생했습니다. 잠시 후 다시 시도해주세요.");
+        }
       })
     )?.json();
 

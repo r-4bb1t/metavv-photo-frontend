@@ -15,8 +15,11 @@ export const Header = ({
     <header className={`${styles.header} ${white ? styles.white : ""}`}>
       <button
         onClick={() => {
-          if (back) back();
-          else router.back();
+          if (back) {
+            back();
+          } else {
+            router.back();
+          }
         }}
       >
         <svg
