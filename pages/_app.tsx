@@ -1,15 +1,13 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import DataContextProvider from "../contexts/dataContext";
-import ResultContextProvider from "../contexts/resultContext";
+import store from "../redux/store";
+import { Provider } from "react-redux";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ResultContextProvider>
-      <DataContextProvider>
-        <Component {...pageProps} />
-      </DataContextProvider>
-    </ResultContextProvider>
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
   );
 }
 

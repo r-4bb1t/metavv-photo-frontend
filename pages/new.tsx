@@ -3,8 +3,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Layout } from "../components/Layout";
-import { useData } from "../hooks/useData";
 import styles from "../styles/New.module.scss";
+import { useSelector } from "react-redux";
+import { StoreState } from "../redux/store";
+import { addImage, deleteImage, resetImage, setLen } from "../redux/data";
 
 const Footer = ({
   n,
@@ -59,16 +61,15 @@ const UploadButton = ({ handleFileUpload }: { handleFileUpload: Function }) => (
 );
 
 const Home: NextPage = () => {
-  const { name, images, setImages, len, setLen } = useData();
+  const { name, images, len } = useSelector(
+    (state: StoreState) => state.creatorData
+  );
   const router = useRouter();
 
   const handleFileUpload = (file: File) => {
     if (!file) return;
     const f = file;
-    setImages((images) => [
-      ...images,
-      { file: f, id: f.name + new Date().toString() },
-    ]);
+    addImage({ file: f, id: f.name + new Date().toString() });
   };
 
   const handleSubmit = async () => {
@@ -120,7 +121,7 @@ const Home: NextPage = () => {
                   )
                 ) {
                   setLen(l);
-                  setImages([]);
+                  resetImage();
                 }
               }}
             >
@@ -138,9 +139,7 @@ const Home: NextPage = () => {
               <button
                 className={styles.close}
                 onClick={() => {
-                  setImages((images) =>
-                    images.filter((i) => i.id !== image.id)
-                  );
+                  deleteImage(image.id);
                 }}
               >
                 <svg
@@ -162,17 +161,19 @@ const Home: NextPage = () => {
             <UploadButton handleFileUpload={handleFileUpload} key={i} />
           ))}
         </div>
-        {
-          images.length > 0 ? 
+        {images.length > 0 ? (
           <div className={styles.imageReset}>
             <span className={styles.reset}>사진 초기화</span>
             <span className={styles.resetButton}>
-             <img src="/assets/refresh.svg" onClick={()=>{setImages([]);}}/>
+              <img
+                src="/assets/refresh.svg"
+                onClick={() => {
+                  resetImage();
+                }}
+              />
             </span>
           </div>
-          :
-          null
-      }
+        ) : null}
       </div>
     </Layout>
   );
