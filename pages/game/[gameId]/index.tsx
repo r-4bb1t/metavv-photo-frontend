@@ -45,8 +45,8 @@ const Home: NextPage = () => {
           </div>
         </div>
         <div className={styles.imgBox}>
-          <img className={styles.img1} src="/assets/introPage/사진.png" />
-          <img className={styles.img2} src="/assets/introPage/사진.png" />
+          <img className={styles.img1} src="/assets/introPage/photo.png" />
+          <img className={styles.img2} src="/assets/introPage/photo.png" />
           <img className={styles.img3} src="/assets/introPage/vs.png" />
         </div>
         <div className={styles.informBox}>

@@ -124,7 +124,7 @@ const Home: NextPage = () => {
                   setModal((modal) => !modal);
                   setImage(selected[round * 2].img);
                 }}
-                src="/assets/gamePage/확대.svg"
+                src="/assets/gamePage/mag.svg"
               />
             </div>
 
@@ -150,7 +150,7 @@ const Home: NextPage = () => {
                   setModal((modal) => !modal);
                   setImage(selected[round * 2 + 1].img);
                 }}
-                src="/assets/gamePage/확대.svg"
+                src="/assets/gamePage/mag.svg"
               />
             </div>
           </>

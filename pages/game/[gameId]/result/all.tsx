@@ -88,8 +88,8 @@ const Home: NextPage = () => {
         </Link>
 
         <div className={styles.imgBox}>
-          <img className={styles.img1} src="/assets/introPage/사진.png" />
-          <img className={styles.img2} src="/assets/introPage/사진.png" />
+          <img className={styles.img1} src="/assets/introPage/photo.png" />
+          <img className={styles.img2} src="/assets/introPage/photo.png" />
         </div>
 
         <Link href={`/game/${router.query.gameId}/result/frame`}>
