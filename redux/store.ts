@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import creatorDataReducer, { CreatorData } from "./creatorData";
 import ResultReducer, { Result } from "./result";
 
@@ -12,4 +12,8 @@ export default configureStore({
     creatorData: creatorDataReducer,
     result: ResultReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
