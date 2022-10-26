@@ -1,8 +1,11 @@
 import type { NextPage } from "next";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 import { Layout } from "../components/Layout";
-import { useData } from "../hooks/useData";
+import { setName } from "../redux/creatorData";
+import { StoreState } from "../redux/store";
 import styles from "../styles/Main.module.scss";
+import { useDispatch } from "react-redux";
 
 const Footer = () => {
   return (
@@ -13,7 +16,8 @@ const Footer = () => {
 };
 
 const Home: NextPage = () => {
-  const { name, setName } = useData();
+  const { name } = useSelector((state: StoreState) => state.creatorData);
+  const dispatch = useDispatch();
   return (
     <Layout footer={<Footer />}>
       <div className={styles.main}>
@@ -29,7 +33,7 @@ const Home: NextPage = () => {
             placeholder="입력해주세요."
             className={styles.input}
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => dispatch(setName(e.target.value))}
           />
           의
           <br />

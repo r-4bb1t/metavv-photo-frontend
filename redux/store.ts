@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import creatorDataReducer, { CreatorData } from "./data";
+import creatorDataReducer, { CreatorData } from "./creatorData";
 import ResultReducer, { Result } from "./result";
 
 export interface StoreState {
@@ -10,6 +10,6 @@ export interface StoreState {
 export default configureStore({
   reducer: {
     creatorData: creatorDataReducer,
-    resulr: ResultReducer,
+    result: ResultReducer,
   },
 });

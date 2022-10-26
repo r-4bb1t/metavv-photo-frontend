@@ -4,15 +4,17 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { Layout } from "../../../components/Layout";
-import { useData } from "../../../hooks/useData";
 import styles from "../../../styles/Intro.module.scss";
 import common from "../../../styles/Common.module.scss";
-import { useResult } from "../../../hooks/useResult";
+import { useDispatch, useSelector } from "react-redux";
+import { StoreState } from "../../../redux/store";
+import { setName } from "../../../redux/result";
 
 const Home: NextPage = () => {
-  const { name, setName } = useResult();
+  const { name } = useSelector((state: StoreState) => state.result);
   const router = useRouter();
   const [data, setData] = useState(null as any);
+  const dispatch = useDispatch();
 
   const fetchData = useCallback(async () => {
     const result = await (
@@ -55,7 +57,7 @@ const Home: NextPage = () => {
               minLength={1}
               maxLength={10}
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => dispatch(setName(e.target.value))}
             />
             <div className={styles.addProfile}>
               <img src="/assets/introPage/add_circle.svg" />

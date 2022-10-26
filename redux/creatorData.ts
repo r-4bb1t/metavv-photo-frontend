@@ -12,29 +12,27 @@ export interface CreatorData {
 }
 
 const creatorData = createSlice({
-  name: "data",
+  name: "creatorData",
   initialState: { name: "", images: [] as Image[], len: 2 },
   reducers: {
     setName: (state, action) => {
-      state.name = action.payload;
+      return { ...state, name: action.payload };
     },
     addImage: (state, action: { payload: Image; type: string }) => {
-      state.images = [...state.images, action.payload];
+      const images = [...state.images, action.payload];
+      return { ...state, images };
     },
     deleteImage: (state, action: { payload: string; type: string }) => {
-      state.images = state.images.filter(
+      const images = state.images.filter(
         (image) => image.id !== action.payload
       );
+      return { ...state, images };
     },
-    resetImage: (
-      state,
-      action: { payload: null | undefined; type: string }
-    ) => {
-      state.images = [];
+    resetImage: (state) => {
+      return { ...state, images: [] };
     },
-
     setLen: (state, action) => {
-      state.len = action.payload;
+      return { ...state, len: action.payload };
     },
   },
 });

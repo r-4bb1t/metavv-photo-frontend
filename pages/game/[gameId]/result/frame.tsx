@@ -1,11 +1,9 @@
 import type { NextPage } from "next";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { Header } from "../../../../components/Header";
 import { Layout } from "../../../../components/Layout";
 import { MyResult } from "../../../../components/MyResult";
-import { useData } from "../../../../hooks/useData";
 import styles from "../../../../styles/Frame.module.scss";
 import domtoimage from "dom-to-image";
 

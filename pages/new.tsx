@@ -4,9 +4,14 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { Layout } from "../components/Layout";
 import styles from "../styles/New.module.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { StoreState } from "../redux/store";
-import { addImage, deleteImage, resetImage, setLen } from "../redux/data";
+import {
+  addImage,
+  deleteImage,
+  resetImage,
+  setLen,
+} from "../redux/creatorData";
 
 const Footer = ({
   n,
@@ -65,6 +70,7 @@ const Home: NextPage = () => {
     (state: StoreState) => state.creatorData
   );
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleFileUpload = (file: File) => {
     if (!file) return;
@@ -120,8 +126,8 @@ const Home: NextPage = () => {
                     `${l}강으로 변경하시겠습니까?\n현재 등록한 사진은 초기화됩니다.`
                   )
                 ) {
-                  setLen(l);
-                  resetImage();
+                  dispatch(setLen(l));
+                  dispatch(resetImage());
                 }
               }}
             >
@@ -139,7 +145,7 @@ const Home: NextPage = () => {
               <button
                 className={styles.close}
                 onClick={() => {
-                  deleteImage(image.id);
+                  dispatch(deleteImage(image.id));
                 }}
               >
                 <svg
@@ -168,7 +174,7 @@ const Home: NextPage = () => {
               <img
                 src="/assets/refresh.svg"
                 onClick={() => {
-                  resetImage();
+                  dispatch(resetImage());
                 }}
               />
             </span>

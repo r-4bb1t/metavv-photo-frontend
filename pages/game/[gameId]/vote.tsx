@@ -7,7 +7,7 @@ import { Layout } from "../../../components/Layout";
 import styles from "../../../styles/GamePage.module.scss";
 import Modal from "../../../components/Modal";
 import { Photo, selectImage, setImages } from "../../../redux/result";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { StoreState } from "../../../redux/store";
 
 const Footer = ({ len }: { len: number }) => {
@@ -37,6 +37,8 @@ const Home: NextPage = () => {
   const [selected, setSelected] = useState([] as Photo[]);
   const [round, setRound] = useState(0);
   const [len, setLen] = useState(0);
+
+  const dispatch = useDispatch();
 
   const applyScore = async () => {
     let res = {} as { [key: number]: number };
@@ -68,7 +70,7 @@ const Home: NextPage = () => {
           return { ...photo, score: 0 };
         });
 
-      setImages(sorted);
+      dispatch(setImages(sorted));
       setSelected(sorted);
       setNext(sorted);
       setRound(0);
@@ -109,7 +111,7 @@ const Home: NextPage = () => {
                     next.filter((n) => n.id !== selected[round * 2 + 1].id)
                   );
                   setRound((r) => r + 1);
-                  selectImage(selected[round * 2].id);
+                  dispatch(selectImage(selected[round * 2].id));
                 }}
               >
                 <img className={styles.img1} src={selected[round * 2].img} />
@@ -132,7 +134,7 @@ const Home: NextPage = () => {
                     next.filter((n) => n.id !== selected[round * 2].id)
                   );
                   setRound((r) => r + 1);
-                  selectImage(selected[round * 2 + 1].id);
+                  dispatch(selectImage(selected[round * 2 + 1].id));
                 }}
               >
                 <img

@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { Photo } from "../contexts/resultContext";
-import { useResult } from "../hooks/useResult";
+import { useSelector } from "react-redux";
+import { Photo } from "../redux/result";
+import { StoreState } from "../redux/store";
 import styles from "../styles/Result.module.scss";
 
 export const MyResult = ({
@@ -9,14 +10,15 @@ export const MyResult = ({
 }: {
   select?: Function;
 }) => {
-  const { images } = useResult();
+  const { images } = useSelector((state: StoreState) => state.result);
   const router = useRouter();
   const [sortedImages, setSortedImages] = useState([] as Photo[][]);
   const [all, setAll] = useState([] as Photo[]);
 
   useEffect(() => {
-    if (images.length === 0) return;
-    let d = images.sort((a, b) => -a.score + b.score);
+    const imgs = Array.from(images);
+    if (imgs.length === 0) return;
+    let d = imgs.sort((a, b) => -a.score + b.score);
     let newData = [];
     newData.push([d[0]]);
     for (let i = 1; i < d.length; i++) {

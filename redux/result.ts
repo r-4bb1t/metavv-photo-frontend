@@ -16,18 +16,20 @@ const result = createSlice({
   initialState: { name: "", images: [] as Photo[] },
   reducers: {
     setName: (state, action) => {
-      state.name = action.payload;
+      return { ...state, name: action.payload };
     },
     selectImage: (state, action: { payload: number; type: string }) => {
-      state.images = state.images.map((image) => {
+      const images = state.images.map((image) => {
         if (image.id === action.payload) {
           return { ...image, score: image.score + 1 };
         }
         return image;
       });
+      return { ...state, images };
     },
     setImages: (state, action: { payload: Photo[]; type: string }) => {
-      state.images = action.payload;
+      const images = action.payload;
+      return { ...state, images };
     },
   },
 });

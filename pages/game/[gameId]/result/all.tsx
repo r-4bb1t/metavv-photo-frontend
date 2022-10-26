@@ -6,7 +6,7 @@ import { Header } from "../../../../components/Header";
 import { Layout } from "../../../../components/Layout";
 import styles from "../../../../styles/Result.module.scss";
 import common from "../../../../styles/Common.module.scss";
-import { Photo } from "../../../../contexts/resultContext";
+import { Photo } from "../../../../redux/result";
 
 const Home: NextPage = () => {
   const router = useRouter();
