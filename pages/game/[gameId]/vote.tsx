@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { Layout } from "../../../components/Layout";
-import { useData } from "../../../hooks/useData";
 import styles from "../../../styles/GamePage.module.scss";
 import Modal from "../../../components/Modal";
-import { Photo } from "../../../contexts/resultContext";
-import { useResult } from "../../../hooks/useResult";
+import { Photo, selectImage, setImages } from "../../../redux/result";
+import { useSelector } from "react-redux";
+import { StoreState } from "../../../redux/store";
 
 const Footer = ({ len }: { len: number }) => {
   const router = useRouter();
@@ -31,7 +31,8 @@ const Home: NextPage = () => {
   const [image, setImage] = useState("");
   const router = useRouter();
 
-  const { name, images, setImages } = useResult();
+  const { name, images } = useSelector((state: StoreState) => state.result);
+
   const [next, setNext] = useState([] as Photo[]);
   const [selected, setSelected] = useState([] as Photo[]);
   const [round, setRound] = useState(0);
@@ -108,13 +109,7 @@ const Home: NextPage = () => {
                     next.filter((n) => n.id !== selected[round * 2 + 1].id)
                   );
                   setRound((r) => r + 1);
-                  setImages((images) =>
-                    images.map((image) => {
-                      if (image.id === selected[round * 2].id)
-                        return { ...image, score: image.score + 1 };
-                      return image;
-                    })
-                  );
+                  selectImage(selected[round * 2].id);
                 }}
               >
                 <img className={styles.img1} src={selected[round * 2].img} />
@@ -137,13 +132,7 @@ const Home: NextPage = () => {
                     next.filter((n) => n.id !== selected[round * 2].id)
                   );
                   setRound((r) => r + 1);
-                  setImages((images) =>
-                    images.map((image) => {
-                      if (image.id === selected[round * 2 + 1].id)
-                        return { ...image, score: image.score + 1 };
-                      return image;
-                    })
-                  );
+                  selectImage(selected[round * 2 + 1].id);
                 }}
               >
                 <img
