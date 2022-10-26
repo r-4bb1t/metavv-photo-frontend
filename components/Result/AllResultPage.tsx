@@ -2,13 +2,13 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { Header } from "../../../../components/Header";
-import { Layout } from "../../../../components/Layout";
-import styles from "../../../../styles/Result.module.scss";
-import common from "../../../../styles/Common.module.scss";
-import { Photo } from "../../../../redux/result";
+import { Header } from "../Header";
+import { Layout } from "../Layout";
+import styles from "../../styles/Result.module.scss";
+import common from "../../styles/Common.module.scss";
+import { Photo } from "../../redux/result";
 
-const Home: NextPage = () => {
+const AllResultPage = () => {
   const router = useRouter();
   const [images, setImages] = useState<Photo[]>([]);
   const [sortedData, setSortedData] = useState<Photo[][]>([]);
@@ -102,4 +102,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default AllResultPage;

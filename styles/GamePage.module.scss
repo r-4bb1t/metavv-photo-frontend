@@ -110,36 +110,26 @@
 
 .button {
   font-weight: 700;
-  border: none;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
   background: none;
   color: #ffb800;
+  border-bottom: 2px solid #ffb800;
   &:disabled {
     color: #777;
   }
 }
 
 .footerBox {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .footer {
-  height: 52px;
-  padding: 10px;
+  height: 100%;
   display: grid;
   grid-template-columns: 80px 1fr 80px;
   place-items: center;
   background-color: black;
-}
-
-.stateBar {
-  width: 100px;
-}
-
-.state {
-  width: 100px;
-  height: 2px;
-  background: #ffb800;
 }

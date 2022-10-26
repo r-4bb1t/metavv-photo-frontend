@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Photo } from "../redux/result";
-import { StoreState } from "../redux/store";
-import styles from "../styles/Result.module.scss";
+import { Photo } from "../../redux/result";
+import { StoreState } from "../../redux/store";
+import styles from "../../styles/Result.module.scss";
 
 export const MyResult = ({
   select = (url: string) => {},

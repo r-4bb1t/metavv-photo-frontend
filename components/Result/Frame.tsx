@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { Header } from "../../../../components/Header";
-import { Layout } from "../../../../components/Layout";
-import { MyResult } from "../../../../components/MyResult";
-import styles from "../../../../styles/Frame.module.scss";
+import { Header } from "../Header";
+import { Layout } from "../Layout";
+import { MyResult } from ".";
+import styles from "../../styles/Frame.module.scss";
 import domtoimage from "dom-to-image";
 
 const Footer = ({ handleDownload }: { handleDownload: Function }) => (
@@ -37,7 +37,7 @@ const Footer = ({ handleDownload }: { handleDownload: Function }) => (
   </button>
 );
 
-const Home: NextPage = () => {
+const Frame = () => {
   const router = useRouter();
   const [selectedFrame, setSelectedFrame] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState<null | number>(null);
@@ -172,4 +172,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Frame;

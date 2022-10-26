@@ -1,14 +1,11 @@
-import type { NextPage } from "next";
-import { FetchEventResult } from "next/dist/server/web/types";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { Layout } from "../../../components/Layout";
-import styles from "../../../styles/GamePage.module.scss";
-import Modal from "../../../components/Modal";
-import { Photo, selectImage, setImages } from "../../../redux/result";
+import { Layout } from "./Layout";
+import styles from "../styles/GamePage.module.scss";
+import Modal from "./Modal";
+import { Photo, selectImage, setImages } from "../redux/result";
 import { useDispatch, useSelector } from "react-redux";
-import { StoreState } from "../../../redux/store";
+import { StoreState } from "../redux/store";
 
 const Footer = ({ len }: { len: number }) => {
   const router = useRouter();
@@ -20,13 +17,10 @@ const Footer = ({ len }: { len: number }) => {
         </button>
         <span>{len > 2 ? len + "강" : "결승"}</span>
       </div>
-      <div className={styles.stateBar}>
-        <div className={styles.state}></div>
-      </div>
     </div>
   );
 };
-const Home: NextPage = () => {
+const Vote = () => {
   const [modal, setModal] = useState(false);
   const [image, setImage] = useState("");
   const router = useRouter();
@@ -168,4 +162,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Vote;
