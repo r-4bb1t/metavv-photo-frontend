@@ -13,7 +13,7 @@ import { setName } from "../../../redux/result";
 const Home: NextPage = () => {
   const { name } = useSelector((state: StoreState) => state.result);
   const router = useRouter();
-  const [data, setData] = useState(null as any);
+  const [data, setData] = useState<{ title: string }>({ title: "" });
   const dispatch = useDispatch();
 
   const fetchData = useCallback(async () => {
@@ -36,7 +36,7 @@ const Home: NextPage = () => {
     <Layout footer={<></>} noBackground>
       <div className={styles.contents}>
         <div className={styles.textBox}>
-          <div className={styles.title}>{data?.title}의 포토 월드컵</div>
+          <div className={styles.title}>{data.title}의 포토 월드컵</div>
           <div className={styles.desc}>
             가장 마음에 드는 포토를 골라주세요! <br />
             나의 최애 포토는 전체 몇 등일까요?

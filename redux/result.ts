@@ -13,7 +13,7 @@ export interface Result {
 
 const result = createSlice({
   name: "data",
-  initialState: { name: "", images: [] as Photo[] },
+  initialState: <Result>{ name: "", images: [] },
   reducers: {
     setName: (state, action) => {
       return { ...state, name: action.payload };

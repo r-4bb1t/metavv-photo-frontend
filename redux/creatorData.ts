@@ -13,7 +13,7 @@ export interface CreatorData {
 
 const creatorData = createSlice({
   name: "creatorData",
-  initialState: { name: "", images: [] as Image[], len: 2 },
+  initialState: <CreatorData>{ name: "", images: [], len: 2 },
   reducers: {
     setName: (state, action) => {
       return { ...state, name: action.payload };

@@ -12,8 +12,8 @@ export const MyResult = ({
 }) => {
   const { images } = useSelector((state: StoreState) => state.result);
   const router = useRouter();
-  const [sortedImages, setSortedImages] = useState([] as Photo[][]);
-  const [all, setAll] = useState([] as Photo[]);
+  const [sortedImages, setSortedImages] = useState<Photo[][]>([]);
+  const [all, setAll] = useState<Photo[]>([]);
 
   useEffect(() => {
     const imgs = Array.from(images);

@@ -10,8 +10,8 @@ import { Photo } from "../../../../redux/result";
 
 const Home: NextPage = () => {
   const router = useRouter();
-  const [images, setImages] = useState([] as Photo[]);
-  const [sortedData, setSortedData] = useState([] as Photo[][]);
+  const [images, setImages] = useState<Photo[]>([]);
+  const [sortedData, setSortedData] = useState<Photo[][]>([]);
 
   const fetchData = useCallback(async () => {
     try {

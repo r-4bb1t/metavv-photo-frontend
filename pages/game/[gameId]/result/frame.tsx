@@ -40,11 +40,13 @@ const Footer = ({ handleDownload }: { handleDownload: Function }) => (
 const Home: NextPage = () => {
   const router = useRouter();
   const [selectedFrame, setSelectedFrame] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(null as null | number);
-  const [photos, setPhotos] = useState([null, null, null, null] as (
-    | null
-    | string
-  )[]);
+  const [isModalOpen, setIsModalOpen] = useState<null | number>(null);
+  const [photos, setPhotos] = useState<(null | string)[]>([
+    null,
+    null,
+    null,
+    null,
+  ]);
   const frameRef = useRef<HTMLDivElement>(null);
 
   const handleDownload = () => {

@@ -33,15 +33,15 @@ const Home: NextPage = () => {
 
   const { name, images } = useSelector((state: StoreState) => state.result);
 
-  const [next, setNext] = useState([] as Photo[]);
-  const [selected, setSelected] = useState([] as Photo[]);
+  const [next, setNext] = useState<Photo[]>([]);
+  const [selected, setSelected] = useState<Photo[]>([]);
   const [round, setRound] = useState(0);
   const [len, setLen] = useState(0);
 
   const dispatch = useDispatch();
 
   const applyScore = async () => {
-    let res = {} as { [key: number]: number };
+    let res: { [key: number]: number } = {};
     images.forEach((image) => {
       res[image.id] = image.score;
     });
