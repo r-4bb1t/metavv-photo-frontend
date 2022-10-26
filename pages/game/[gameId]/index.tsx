@@ -8,7 +8,7 @@ import { StoreState } from "../../../redux/store";
 import { GameStart } from "../../../components/GameStart";
 import Vote from "../../../components/Vote";
 import MyResultPage from "../../../components/Result/MyResultPage";
-import Frame from "../../../components/Result/frame";
+import Frame from "../../../components/Result/Frame";
 import AllResultPage from "../../../components/Result/AllResultPage";
 
 export enum PAGE_STATE {
