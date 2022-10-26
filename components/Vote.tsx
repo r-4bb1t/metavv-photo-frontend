@@ -1,29 +1,47 @@
-import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { Layout } from "./Layout";
 import styles from "../styles/GamePage.module.scss";
 import Modal from "./Modal";
 import { Photo, selectImage, setImages } from "../redux/result";
 import { useDispatch, useSelector } from "react-redux";
 import { StoreState } from "../redux/store";
+import { PAGE_STATE } from "../pages/game/[gameId]";
 
-const Footer = ({ len }: { len: number }) => {
-  const router = useRouter();
+const Footer = ({
+  len,
+  setPageState,
+}: {
+  len: number;
+  setPageState: Dispatch<SetStateAction<PAGE_STATE>>;
+}) => {
   return (
-    <div className={styles.footerBox}>
-      <div className={styles.footer}>
-        <button className={styles.button} onClick={() => router.back()}>
-          이전
-        </button>
-        <span>{len > 2 ? len + "강" : "결승"}</span>
-      </div>
+    <div className={styles.footer}>
+      <button
+        className={styles.button}
+        onClick={() => setPageState(PAGE_STATE.index)}
+      >
+        이전
+      </button>
+      <div>{len > 2 ? len + "강" : "결승"}</div>
+      <div></div>
     </div>
   );
 };
-const Vote = () => {
+const Vote = ({
+  gameId,
+  setPageState,
+}: {
+  gameId: string;
+  setPageState: Dispatch<SetStateAction<PAGE_STATE>>;
+}) => {
   const [modal, setModal] = useState(false);
   const [image, setImage] = useState("");
-  const router = useRouter();
 
   const { name, images } = useSelector((state: StoreState) => state.result);
 
@@ -40,22 +58,20 @@ const Vote = () => {
       res[image.id] = image.score;
     });
 
-    fetch(`${process.env.NEXT_PUBLIC_API_HOST}/${router.query.gameId}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_HOST}/${gameId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: name,
         photos: res,
       }),
-    }).then(() => router.push(`/game/${router.query.gameId}/result/my`));
+    }).then(() => setPageState(PAGE_STATE.my));
   };
 
   const fetchData = useCallback(async () => {
     try {
       const result = await (
-        await fetch(
-          `${process.env.NEXT_PUBLIC_API_HOST}/${router.query.gameId}`
-        )
+        await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/${gameId}`)
       ).json();
 
       const sorted = result.photos
@@ -72,7 +88,7 @@ const Vote = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [router]);
+  }, []);
 
   useEffect(() => {
     if (round * 2 === len) {
@@ -89,13 +105,16 @@ const Vote = () => {
   }, [len]);
 
   useEffect(() => {
-    if (router.query.gameId) {
+    if (gameId) {
       fetchData();
     }
-  }, [fetchData, router]);
+  }, [fetchData, gameId]);
 
   return (
-    <Layout footer={<Footer len={len} />} noBackground>
+    <Layout
+      footer={<Footer len={len} setPageState={setPageState} />}
+      noBackground
+    >
       <div className={styles.contents}>
         {selected[round * 2] && selected[round * 2 + 1] && (
           <>

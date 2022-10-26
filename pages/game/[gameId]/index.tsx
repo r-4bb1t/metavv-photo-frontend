@@ -21,9 +21,7 @@ export enum PAGE_STATE {
 
 const Home: NextPage = () => {
   const router = useRouter();
-  const { name } = useSelector((state: StoreState) => state.result);
   const [title, setTitle] = useState("");
-  const dispatch = useDispatch();
 
   const [pageState, setPageState] = useState(PAGE_STATE.index);
 
@@ -46,19 +44,39 @@ const Home: NextPage = () => {
   }, [fetchData, router.query.gameId]);
 
   return (
-    <Layout footer={<></>} noBackground>
+    <>
       {
         {
           [PAGE_STATE.index]: (
             <GameStart title={title} setPageState={setPageState} />
           ),
-          [PAGE_STATE.vote]: <Vote />,
-          [PAGE_STATE.all]: <AllResultPage />,
-          [PAGE_STATE.frame]: <Frame />,
-          [PAGE_STATE.my]: <MyResultPage />,
+          [PAGE_STATE.vote]: (
+            <Vote
+              setPageState={setPageState}
+              gameId={router.query.gameId as string}
+            />
+          ),
+          [PAGE_STATE.all]: (
+            <AllResultPage
+              setPageState={setPageState}
+              gameId={router.query.gameId as string}
+            />
+          ),
+          [PAGE_STATE.frame]: (
+            <Frame
+              setPageState={setPageState}
+              gameId={router.query.gameId as string}
+            />
+          ),
+          [PAGE_STATE.my]: (
+            <MyResultPage
+              setPageState={setPageState}
+              gameId={router.query.gameId as string}
+            />
+          ),
         }[pageState]
       }
-    </Layout>
+    </>
   );
 };
 

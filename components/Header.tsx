@@ -4,22 +4,18 @@ import styles from "../styles/Header.module.scss";
 export const Header = ({
   title,
   white = false,
-  back = null,
+  back = () => {},
 }: {
   title: string;
   white?: boolean;
-  back?: Function | null;
+  back?: Function;
 }) => {
   const router = useRouter();
   return (
     <header className={`${styles.header} ${white ? styles.white : ""}`}>
       <button
         onClick={() => {
-          if (back) {
-            back();
-          } else {
-            router.back();
-          }
+          back();
         }}
       >
         <svg

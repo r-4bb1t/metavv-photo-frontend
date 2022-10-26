@@ -1,11 +1,12 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { Header } from "../Header";
 import { Layout } from "../Layout";
 import { MyResult } from ".";
 import styles from "../../styles/Frame.module.scss";
 import domtoimage from "dom-to-image";
+import { PAGE_STATE } from "../../pages/game/[gameId]";
 
 const Footer = ({ handleDownload }: { handleDownload: Function }) => (
   <button className={styles.footer} onClick={() => handleDownload()}>
@@ -37,8 +38,13 @@ const Footer = ({ handleDownload }: { handleDownload: Function }) => (
   </button>
 );
 
-const Frame = () => {
-  const router = useRouter();
+const Frame = ({
+  gameId,
+  setPageState,
+}: {
+  gameId: string;
+  setPageState: Dispatch<SetStateAction<PAGE_STATE>>;
+}) => {
   const [selectedFrame, setSelectedFrame] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState<null | number>(null);
   const [photos, setPhotos] = useState<(null | string)[]>([
@@ -74,7 +80,11 @@ const Frame = () => {
         noBackground
         white
       >
-        <Header title="프레임 만들기" white />
+        <Header
+          title="프레임 만들기"
+          white
+          back={() => setPageState(PAGE_STATE.all)}
+        />
         <div className={styles.main}>
           <div className={styles.frameContainer}>
             <div
@@ -152,6 +162,7 @@ const Frame = () => {
             <Layout noBackground>
               <Header title="사진 선택" back={() => setIsModalOpen(null)} />
               <MyResult
+                gameId={gameId}
                 select={(url: string) => {
                   setPhotos((photos) =>
                     photos.map((photo, i) => {

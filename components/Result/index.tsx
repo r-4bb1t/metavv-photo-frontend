@@ -6,12 +6,13 @@ import { StoreState } from "../../redux/store";
 import styles from "../../styles/Result.module.scss";
 
 export const MyResult = ({
+  gameId,
   select = (url: string) => {},
 }: {
+  gameId: string;
   select?: Function;
 }) => {
   const { images } = useSelector((state: StoreState) => state.result);
-  const router = useRouter();
   const [sortedImages, setSortedImages] = useState<Photo[][]>([]);
   const [all, setAll] = useState<Photo[]>([]);
 
@@ -35,21 +36,19 @@ export const MyResult = ({
   const fetchData = useCallback(async () => {
     try {
       const result = await (
-        await fetch(
-          `${process.env.NEXT_PUBLIC_API_HOST}/${router.query.gameId}/result`
-        )
+        await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/${gameId}/result`)
       ).json();
       setAll(result.photos.sort((a: Photo, b: Photo) => -a.score + b.score));
     } catch (e) {
       console.log(e);
     }
-  }, [router]);
+  }, []);
 
   useEffect(() => {
-    if (router.query.gameId) {
+    if (gameId) {
       fetchData();
     }
-  }, [router, fetchData]);
+  }, [fetchData]);
 
   return (
     <div className={styles.main}>
