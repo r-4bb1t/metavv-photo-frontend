@@ -6,7 +6,7 @@ import { Layout } from "../../../components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { StoreState } from "../../../redux/store";
 import { GameStart } from "../../../components/GameStart";
-import Vote from "../../../components/vote";
+import Vote from "../../../components/Vote";
 import MyResultPage from "../../../components/Result/MyResultPage";
 import Frame from "../../../components/Result/frame";
 import AllResultPage from "../../../components/Result/AllResultPage";
