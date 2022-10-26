@@ -77,7 +77,7 @@ const Home: NextPage = () => {
   const handleFileUpload = (file: File) => {
     if (!file) return;
     const f = file;
-    addImage({ file: f, id: f.name + new Date().toString() });
+    dispatch(addImage({ file: f, id: f.name + new Date().toString() }));
   };
 
   const handleSubmit = async () => {
