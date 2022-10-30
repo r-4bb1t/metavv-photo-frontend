@@ -129,3 +129,7 @@
   place-items: center;
   background-color: black;
 }
+
+.notSelected {
+  filter: brightness(0.5);
+}

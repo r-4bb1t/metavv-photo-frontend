@@ -50,6 +50,8 @@ const Vote = ({
   const [round, setRound] = useState(0);
   const [len, setLen] = useState(0);
 
+  const [isSelected, setIsSelected] = useState(false);
+
   const dispatch = useDispatch();
 
   const applyScore = async () => {
@@ -91,6 +93,7 @@ const Vote = ({
   }, []);
 
   useEffect(() => {
+    setIsSelected(false);
     if (round * 2 === len) {
       setSelected(next.sort(() => 0.5 - Math.random()));
       setLen((len) => len / 2);
@@ -122,14 +125,24 @@ const Vote = ({
               <div
                 className={styles.imgBorder1}
                 onClick={() => {
-                  setNext((next) =>
-                    next.filter((n) => n.id !== selected[round * 2 + 1].id)
-                  );
-                  setRound((r) => r + 1);
-                  dispatch(selectImage(selected[round * 2].id));
+                  if (!isSelected) {
+                    setNext((next) =>
+                      next.filter((n) => n.id !== selected[round * 2 + 1].id)
+                    );
+                    setIsSelected(true);
+                    setTimeout(() => setRound((r) => r + 1), 500);
+                    dispatch(selectImage(selected[round * 2].id));
+                  }
                 }}
               >
-                <img className={styles.img1} src={selected[round * 2].img} />
+                <img
+                  className={`${styles.img1} ${
+                    next.some((n) => n.id === selected[round * 2].id)
+                      ? ""
+                      : styles.notSelected
+                  }`}
+                  src={selected[round * 2].img}
+                />
               </div>
               <img
                 className={styles.mag1}
@@ -145,15 +158,22 @@ const Vote = ({
               <div
                 className={styles.imgBorder2}
                 onClick={() => {
-                  setNext((next) =>
-                    next.filter((n) => n.id !== selected[round * 2].id)
-                  );
-                  setRound((r) => r + 1);
-                  dispatch(selectImage(selected[round * 2 + 1].id));
+                  if (!isSelected) {
+                    setNext((next) =>
+                      next.filter((n) => n.id !== selected[round * 2].id)
+                    );
+                    setIsSelected(true);
+                    setTimeout(() => setRound((r) => r + 1), 500);
+                    dispatch(selectImage(selected[round * 2 + 1].id));
+                  }
                 }}
               >
                 <img
-                  className={styles.img2}
+                  className={`${styles.img2} ${
+                    next.some((n) => n.id === selected[round * 2 + 1].id)
+                      ? ""
+                      : styles.notSelected
+                  }`}
                   src={selected[round * 2 + 1].img}
                 />
               </div>
