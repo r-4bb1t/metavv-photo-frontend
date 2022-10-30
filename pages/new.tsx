@@ -61,9 +61,10 @@ const UploadButton = ({ handleFileUpload }: { handleFileUpload: Function }) => (
       className={styles.input}
       type="file"
       accept="image/*"
+      multiple
       onChange={(e) => {
         if (e.target.files) {
-          handleFileUpload(e.target.files[0]);
+          handleFileUpload(e.target.files);
         }
       }}
     />
@@ -78,10 +79,11 @@ const Home: NextPage = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
-  const handleFileUpload = (file: File) => {
-    if (!file) return;
-    const f = file;
-    dispatch(addImage({ file: f, id: f.name + new Date().toString() }));
+  const handleFileUpload = (files: File[]) => {
+    if (!files || files.length < 0) return;
+    Array.from(files).forEach((f) =>
+      dispatch(addImage({ file: f, id: f.name + new Date().toString() }))
+    );
   };
 
   const handleSubmit = async () => {
