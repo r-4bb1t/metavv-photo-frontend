@@ -17,12 +17,15 @@ const Footer = ({
   n,
   len,
   handleSubmit,
+  loading,
 }: {
   n: number;
   len: number;
   handleSubmit: Function;
+  loading: boolean;
 }) => {
   const router = useRouter();
+
   return (
     <div className={styles.footer}>
       <button className={styles.button} onClick={() => router.back()}>
@@ -31,7 +34,7 @@ const Footer = ({
       <div>총 {n}장의 사진을 등록했어요!</div>
       <button
         className={styles.button}
-        disabled={n < len}
+        disabled={n < len || loading}
         onClick={() => handleSubmit()}
       >
         완료
@@ -73,6 +76,7 @@ const Home: NextPage = () => {
   );
   const router = useRouter();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const handleFileUpload = (file: File) => {
     if (!file) return;
@@ -81,6 +85,7 @@ const Home: NextPage = () => {
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     const data = new FormData();
     images.forEach((image) => {
       data.append("files", image.file);
@@ -104,13 +109,20 @@ const Home: NextPage = () => {
       })
     )?.json();
 
+    setLoading(false);
+
     router.push(`/game/${result.url}`);
   };
 
   return (
     <Layout
       footer={
-        <Footer n={images.length} len={len} handleSubmit={handleSubmit} />
+        <Footer
+          n={images.length}
+          len={len}
+          handleSubmit={handleSubmit}
+          loading={loading}
+        />
       }
     >
       <div className={styles.main}>
