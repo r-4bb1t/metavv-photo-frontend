@@ -81,9 +81,11 @@ const Home: NextPage = () => {
 
   const handleFileUpload = (files: File[]) => {
     if (!files || files.length < 0) return;
-    Array.from(files).forEach((f) =>
-      dispatch(addImage({ file: f, id: f.name + new Date().toString() }))
-    );
+    Array.from(files)
+      .slice(0, len - images.length)
+      .forEach((f) =>
+        dispatch(addImage({ file: f, id: f.name + new Date().toString() }))
+      );
   };
 
   const handleSubmit = async () => {
