@@ -68,6 +68,9 @@
   font-weight: 700;
   font-size: 14px;
   gap: 4px;
+  &:disabled {
+    background: #666;
+  }
 }
 
 .modalContainer {

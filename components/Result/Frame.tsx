@@ -8,8 +8,18 @@ import styles from "../../styles/Frame.module.scss";
 import domtoimage from "dom-to-image";
 import { PAGE_STATE } from "../../pages/game/[gameId]";
 
-const Footer = ({ handleDownload }: { handleDownload: Function }) => (
-  <button className={styles.footer} onClick={() => handleDownload()}>
+const Footer = ({
+  handleDownload,
+  disabled,
+}: {
+  handleDownload: Function;
+  disabled: boolean;
+}) => (
+  <button
+    className={styles.footer}
+    onClick={() => handleDownload()}
+    disabled={disabled}
+  >
     <div>나만의 프레임 이미지 저장</div>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +86,12 @@ const Frame = ({
   return (
     <>
       <Layout
-        footer={<Footer handleDownload={handleDownload} />}
+        footer={
+          <Footer
+            handleDownload={handleDownload}
+            disabled={photos.some((photo) => photo == null)}
+          />
+        }
         noBackground
         white
       >
