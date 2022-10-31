@@ -45,7 +45,14 @@ $primary: #ffb800;
 
 .upload_button {
   width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 1 / 1;
+  @supports not (aspect-ratio: 1 / 1) {
+    &::before {
+      float: left;
+      padding-top: 100%;
+      content: "";
+    }
+  }
   background-color: rgba(255, 255, 255, 0.15);
   display: flex;
   justify-content: center;

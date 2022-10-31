@@ -22,7 +22,7 @@ $primary: #ffb800;
   @supports not (aspect-ratio: 1 / 1) {
     &::before {
       float: left;
-      padding-top: 50%;
+      padding-top: 100%;
       content: "";
     }
   }
