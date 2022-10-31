@@ -6,12 +6,23 @@ import { setName } from "../redux/creatorData";
 import { StoreState } from "../redux/store";
 import styles from "../styles/Main.module.scss";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
-const Footer = () => {
+const Footer = ({ disabled }: { disabled: boolean }) => {
+  const router = useRouter();
   return (
-    <Link href="/new">
-      <a className={styles.button}>만들기</a>
-    </Link>
+    <button
+      className={styles.button}
+      onClick={() => {
+        if (disabled) {
+          alert("이름을 입력해주세요.");
+        } else {
+          router.push("/new");
+        }
+      }}
+    >
+      만들기
+    </button>
   );
 };
 
@@ -19,7 +30,7 @@ const Home: NextPage = () => {
   const { name } = useSelector((state: StoreState) => state.creatorData);
   const dispatch = useDispatch();
   return (
-    <Layout footer={<Footer />}>
+    <Layout footer={<Footer disabled={name.length === 0} />}>
       <div className={styles.main}>
         <div className={styles.title}>포토 월드컵</div>
         <div className={styles.contents}>
@@ -31,6 +42,7 @@ const Home: NextPage = () => {
         <div className={styles.input_container}>
           <input
             placeholder="입력해주세요."
+            maxLength={10}
             className={styles.input}
             value={name}
             onChange={(e) => dispatch(setName(e.target.value))}
