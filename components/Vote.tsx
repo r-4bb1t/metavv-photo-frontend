@@ -178,7 +178,7 @@ const Vote = ({
                 />
               </div>
               <img
-                className={styles.mag2}
+                className={styles.imag2}
                 onClick={() => {
                   setModal((modal) => !modal);
                   setImage(selected[round * 2 + 1].img);
