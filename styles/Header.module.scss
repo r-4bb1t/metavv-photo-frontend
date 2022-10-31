@@ -2,9 +2,10 @@
   height: 48px;
   width: 100%;
   display: grid;
-  grid-template-columns: 50px 1fr 50px;
+  grid-template-columns: 0.1fr 0.8fr 0.1fr;
+  justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 }
