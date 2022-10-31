@@ -19,7 +19,6 @@
 .frame {
   width: 100%;
   height: auto;
-  aspect-ratio: 1 / 1;
   background-position: center;
   background-size: cover;
   display: grid;
@@ -38,6 +37,13 @@
 .item {
   width: 100%;
   aspect-ratio: 1 / 1;
+  @supports not (aspect-ratio: 1 / 1) {
+    &::before {
+      float: left;
+      padding-top: 100%;
+      content: "";
+    }
+  }
   background-color: grey;
   display: flex;
   align-items: center;

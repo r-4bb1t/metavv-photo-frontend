@@ -4,6 +4,13 @@ $primary: #ffb800;
   width: calc(100% + 4rem);
   margin-left: -2rem;
   aspect-ratio: 1 / 1;
+  @supports not (aspect-ratio: 1 / 1) {
+    &::before {
+      float: left;
+      padding-top: 50%;
+      content: "";
+    }
+  }
 }
 
 .button {

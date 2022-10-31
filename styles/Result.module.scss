@@ -19,6 +19,13 @@ $primary: #ffb800;
   width: 100%;
   flex-shrink: 0;
   aspect-ratio: 1 / 1;
+  @supports not (aspect-ratio: 1 / 1) {
+    &::before {
+      float: left;
+      padding-top: 50%;
+      content: "";
+    }
+  }
   box-shadow: 0 3px 10px black;
   margin-top: 10px;
   img {
