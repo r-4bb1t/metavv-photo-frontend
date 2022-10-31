@@ -66,6 +66,7 @@ const UploadButton = ({ handleFileUpload }: { handleFileUpload: Function }) => (
         if (e.target.files) {
           handleFileUpload(e.target.files);
         }
+        e.target.value = "";
       }}
     />
   </label>
@@ -83,9 +84,9 @@ const Home: NextPage = () => {
     if (!files || files.length < 0) return;
     Array.from(files)
       .slice(0, len - images.length)
-      .forEach((f) =>
-        dispatch(addImage({ file: f, id: f.name + new Date().toString() }))
-      );
+      .forEach((f) => {
+        dispatch(addImage({ file: f, id: f.name + new Date().getTime() }));
+      });
   };
 
   const handleSubmit = async () => {
