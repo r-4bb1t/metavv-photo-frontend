@@ -14,15 +14,19 @@ import styles from "../../styles/Result.module.scss";
 import common from "../../styles/Common.module.scss";
 import { Photo } from "../../redux/result";
 import { PAGE_STATE } from "../../pages/game/[gameId]";
+import { Photos } from "../Photos";
 
 const AllResultPage = ({
   gameId,
   setPageState,
+  images,
+  setImages,
 }: {
   gameId: string;
   setPageState: Dispatch<SetStateAction<PAGE_STATE>>;
+  images: Photo[];
+  setImages: Function;
 }) => {
-  const [images, setImages] = useState<Photo[]>([]);
   const [sortedData, setSortedData] = useState<Photo[][]>([]);
 
   const fetchData = useCallback(async () => {
@@ -101,10 +105,10 @@ const AllResultPage = ({
           </svg>
         </button>
 
-        <div className={styles.imgBox}>
-          <img className={styles.img1} src="/assets/introPage/photo.png" />
-          <img className={styles.img2} src="/assets/introPage/photo.png" />
-        </div>
+        <Photos
+          src1={images[Math.floor(Math.random() * images.length)]?.img || ""}
+          src2={images[Math.floor(Math.random() * images.length)]?.img || ""}
+        />
 
         <button
           className={common.borderedButton}

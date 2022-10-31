@@ -10,6 +10,7 @@ import Vote from "../../../components/Vote";
 import MyResultPage from "../../../components/Result/MyResultPage";
 import Frame from "../../../components/Result/Frame";
 import AllResultPage from "../../../components/Result/AllResultPage";
+import { Photo } from "../../../redux/result";
 
 export enum PAGE_STATE {
   index,
@@ -22,6 +23,7 @@ export enum PAGE_STATE {
 const Home: NextPage = () => {
   const router = useRouter();
   const [title, setTitle] = useState("");
+  const [images, setImages] = useState<Photo[]>([]);
 
   const [pageState, setPageState] = useState(PAGE_STATE.index);
 
@@ -35,6 +37,7 @@ const Home: NextPage = () => {
       })
     )?.json();
     setTitle(result.title);
+    setImages(result.photos);
   }, [router]);
 
   useEffect(() => {
@@ -48,7 +51,12 @@ const Home: NextPage = () => {
       {
         {
           [PAGE_STATE.index]: (
-            <GameStart title={title} setPageState={setPageState} />
+            <GameStart
+              title={title}
+              setPageState={setPageState}
+              images={images}
+              setImages={setImages}
+            />
           ),
           [PAGE_STATE.vote]: (
             <Vote
@@ -60,6 +68,8 @@ const Home: NextPage = () => {
             <AllResultPage
               setPageState={setPageState}
               gameId={router.query.gameId as string}
+              images={images}
+              setImages={setImages}
             />
           ),
           [PAGE_STATE.frame]: (
@@ -72,6 +82,8 @@ const Home: NextPage = () => {
             <MyResultPage
               setPageState={setPageState}
               gameId={router.query.gameId as string}
+              images={images}
+              setImages={setImages}
             />
           ),
         }[pageState]

@@ -58,27 +58,3 @@ $primary: #ffb800;
   font-size: 16px;
   font-weight: 700;
 }
-
-.imgBox {
-  width: 100%;
-  height: 154.97px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin-top: 40px;
-}
-
-.imgBox img {
-  position: absolute;
-}
-
-.img1 {
-  width: 130px;
-  rotate: (-3deg);
-  left: 43.26px;
-}
-.img2 {
-  width: 130px;
-  rotate: (9deg);
-  right: 43.26px;
-}

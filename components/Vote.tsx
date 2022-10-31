@@ -76,7 +76,7 @@ const Vote = ({
         await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/${gameId}`)
       ).json();
 
-      const sorted = result.photos
+      const sorted = images
         .sort(() => 0.5 - Math.random())
         .map((photo: Photo) => {
           return { ...photo, score: 0 };

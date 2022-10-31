@@ -1,0 +1,47 @@
+.imgBox {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.img1 {
+  height: 100%;
+  rotate: (-3deg);
+  img {
+    height: 100%;
+  }
+}
+
+.img2 {
+  height: 100%;
+  rotate: (9deg);
+  img {
+    height: 100%;
+  }
+}
+
+.img3 {
+  width: 40px;
+  height: 40px;
+  margin: -25px;
+  z-index: 1;
+}
+
+.randomContainer {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  right: 12px;
+  bottom: 40px;
+}
+
+.random {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}

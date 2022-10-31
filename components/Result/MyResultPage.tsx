@@ -6,18 +6,28 @@ import { Layout } from "../Layout";
 import styles from "../../styles/Result.module.scss";
 import common from "../../styles/Common.module.scss";
 import { MyResult } from ".";
-import { Dispatch, SetStateAction } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { PAGE_STATE } from "../../pages/game/[gameId]";
+import { Photos } from "../Photos";
+import { Photo } from "../../redux/result";
 
 const MyResultPage = ({
   gameId,
   setPageState,
+  images,
+  setImages,
 }: {
   gameId: string;
   setPageState: Dispatch<SetStateAction<PAGE_STATE>>;
+  images: Photo[];
+  setImages: Function;
 }) => {
-  const router = useRouter();
-
   return (
     <Layout footer={<></>} noBackground>
       <Header
@@ -51,10 +61,10 @@ const MyResultPage = ({
         </svg>
       </button>
 
-      <div className={styles.imgBox}>
-        <img className={styles.img1} src="/assets/introPage/photo.png" />
-        <img className={styles.img2} src="/assets/introPage/photo.png" />
-      </div>
+      <Photos
+        src1={images[Math.floor(Math.random() * images.length)].img}
+        src2={images[Math.floor(Math.random() * images.length)].img}
+      />
 
       <button
         className={common.borderedButton}

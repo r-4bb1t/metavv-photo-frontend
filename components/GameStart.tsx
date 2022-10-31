@@ -1,5 +1,5 @@
 import styles from "../styles/Intro.module.scss";
-import { setName } from "../redux/result";
+import { Photo, setName } from "../redux/result";
 import common from "../styles/Common.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, SetStateAction, useState } from "react";
@@ -7,13 +7,18 @@ import { StoreState } from "../redux/store";
 import { useRouter } from "next/router";
 import { PAGE_STATE } from "../pages/game/[gameId]";
 import { Layout } from "./Layout";
+import { Photos } from "./Photos";
 
 export const GameStart = ({
   title,
   setPageState,
+  images,
+  setImages,
 }: {
   title: string;
   setPageState: Dispatch<SetStateAction<PAGE_STATE>>;
+  images: Photo[];
+  setImages: Function;
 }) => {
   const { name } = useSelector((state: StoreState) => state.result);
   const dispatch = useDispatch();
@@ -28,11 +33,11 @@ export const GameStart = ({
             나의 최애 포토는 전체 몇 등일까요?
           </div>
         </div>
-        <div className={styles.imgBox}>
-          <img className={styles.img1} src="/assets/introPage/photo.png" />
-          <img className={styles.img2} src="/assets/introPage/photo.png" />
-          <img className={styles.img3} src="/assets/introPage/vs.png" />
-        </div>
+        <Photos
+          src1={images[Math.floor(Math.random() * images.length)]?.img || ""}
+          src2={images[Math.floor(Math.random() * images.length)]?.img || ""}
+          hasvs
+        />
         <div className={styles.informBox}>
           <div className={styles.myInform}>
             <span>내 정보 입력</span>
