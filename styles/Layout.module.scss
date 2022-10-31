@@ -33,12 +33,13 @@
 }
 
 .background {
-  position: absolute;
   z-index: 1;
+  position: fixed;
+  width: 100%;
+  min-width: 320px;
+  max-width: 500px;
   top: 0;
-  left: 0;
-  right: 0;
-  height: calc(100vh - 4rem);
+  height: calc(100% - 4rem);
   padding: 1rem;
   pointer-events: none;
   display: grid;
