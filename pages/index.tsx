@@ -34,9 +34,9 @@ const Home: NextPage = () => {
       <div className={styles.main}>
         <div className={styles.title}>포토 월드컵</div>
         <div className={styles.contents}>
-          최애 굿즈 만들 사진이 고민되나요?
+          어떤 사진을 골라야 할 지 고민될 때
           <br />
-          다른 사람들과 의견을 공유해보세요!
+          나만의 포토 월드컵을 만들어 공유해 보세요!
         </div>
         <img src="/assets/camera.png" className={styles.camera} />
         <div className={styles.input_container}>
