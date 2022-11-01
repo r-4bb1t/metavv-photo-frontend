@@ -2,7 +2,7 @@ import styles from "../styles/Intro.module.scss";
 import { Photo, setName } from "../redux/result";
 import common from "../styles/Common.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useMemo, useState } from "react";
 import { StoreState } from "../redux/store";
 import { useRouter } from "next/router";
 import { PAGE_STATE } from "../pages/game/[gameId]";
@@ -23,6 +23,9 @@ export const GameStart = ({
   const { name } = useSelector((state: StoreState) => state.result);
   const dispatch = useDispatch();
 
+  const s1 = useMemo(() => Math.floor(Math.random() * images.length), [images]),
+    s2 = useMemo(() => Math.floor(Math.random() * images.length), [images]);
+
   return (
     <Layout noBackground>
       <div className={styles.contents}>
@@ -34,8 +37,8 @@ export const GameStart = ({
           </div>
         </div>
         <Photos
-          src1={images[Math.floor(Math.random() * images.length)]?.img || ""}
-          src2={images[Math.floor(Math.random() * images.length)]?.img || ""}
+          src1={images[s1]?.img || ""}
+          src2={images[s2]?.img || ""}
           hasvs
         />
         <div className={styles.informBox}>

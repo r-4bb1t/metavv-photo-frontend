@@ -11,6 +11,7 @@ import {
   SetStateAction,
   useCallback,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import { PAGE_STATE } from "../../pages/game/[gameId]";
@@ -28,6 +29,9 @@ const MyResultPage = ({
   images: Photo[];
   setImages: Function;
 }) => {
+  const s1 = useMemo(() => Math.floor(Math.random() * images.length), [images]),
+    s2 = useMemo(() => Math.floor(Math.random() * images.length), [images]);
+
   return (
     <Layout footer={<></>} noBackground>
       <Header
@@ -61,10 +65,7 @@ const MyResultPage = ({
         </svg>
       </button>
 
-      <Photos
-        src1={images[Math.floor(Math.random() * images.length)].img}
-        src2={images[Math.floor(Math.random() * images.length)].img}
-      />
+      <Photos src1={images[s1].img} src2={images[s2].img} />
 
       <button
         className={common.borderedButton}

@@ -6,6 +6,7 @@ import {
   SetStateAction,
   useCallback,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import { Header } from "../Header";
@@ -28,6 +29,9 @@ const AllResultPage = ({
   setImages: Function;
 }) => {
   const [sortedData, setSortedData] = useState<Photo[][]>([]);
+
+  const s1 = useMemo(() => Math.floor(Math.random() * images.length), [images]),
+    s2 = useMemo(() => Math.floor(Math.random() * images.length), [images]);
 
   const fetchData = useCallback(async () => {
     try {
@@ -105,10 +109,7 @@ const AllResultPage = ({
           </svg>
         </button>
 
-        <Photos
-          src1={images[Math.floor(Math.random() * images.length)]?.img || ""}
-          src2={images[Math.floor(Math.random() * images.length)]?.img || ""}
-        />
+        <Photos src1={images[s1]?.img || ""} src2={images[s2]?.img || ""} />
 
         <button
           className={common.borderedButton}
