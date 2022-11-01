@@ -14,7 +14,7 @@ const Footer = ({ disabled }: { disabled: boolean }) => {
   return (
     <button
       disabled={disabled}
-      style={disabled === true ? {backgroundColor: '#D9D9D9'} : {backgroundColor: '#ffb800'}}
+      style={disabled === true ? {color: 'white', backgroundColor: '#D9D9D9'} : {color: 'black', backgroundColor: '#ffb800'}}
       className={styles.button}
       onClick={() => {
           router.push("/new");
