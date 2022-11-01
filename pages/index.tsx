@@ -29,6 +29,14 @@ const Home: NextPage = () => {
   const { name } = useSelector((state: StoreState) => state.creatorData);
   const dispatch = useDispatch();
   const [disable, setDisable] = useState(true);
+ 
+  const checkInput = (name : String) => {
+    if(name === '') {
+      setDisable(true);
+    } else {
+      setDisable(false)
+    }
+  }
   return (
     <Layout footer={<Footer disabled={disable} />}>
       <div className={styles.main}>
@@ -45,7 +53,8 @@ const Home: NextPage = () => {
             maxLength={10}
             className={styles.input}
             value={name}
-            onChange={(e) => {dispatch(setName(e.target.value)); setDisable(false)}}
+            onKeyUp={()=> checkInput(name)}
+            onChange={(e) => dispatch(setName(e.target.value))}
           />
           의
           <br />
