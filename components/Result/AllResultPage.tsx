@@ -99,7 +99,11 @@ const AllResultPage = ({
           className={common.borderedButton}
           onClick={() => setPageState(PAGE_STATE.vote)}
         >
-          <div>투표 다시하기</div>
+          <div>
+            {votedImages.length === images.length
+              ? "투표 다시하기"
+              : "나도 투표하기"}
+          </div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="12"
@@ -116,7 +120,7 @@ const AllResultPage = ({
 
         <Photos src1={images[s1]?.img || ""} src2={images[s2]?.img || ""} />
 
-        {votedImages.length > 0 && (
+        {votedImages.length === images.length && (
           <button
             className={common.borderedButton}
             onClick={() => setPageState(PAGE_STATE.frame)}
