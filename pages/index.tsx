@@ -14,10 +14,14 @@ const Footer = ({ disabled }: { disabled: boolean }) => {
   return (
     <button
       disabled={disabled}
-      style={disabled === true ? {color: 'white', backgroundColor: '#D9D9D9'} : {color: 'black', backgroundColor: '#ffb800'}}
+      style={
+        disabled === true
+          ? { color: "white", backgroundColor: "#777" }
+          : { color: "black", backgroundColor: "#ffb800" }
+      }
       className={styles.button}
       onClick={() => {
-          router.push("/new");
+        router.push("/new");
       }}
     >
       만들기
@@ -29,14 +33,14 @@ const Home: NextPage = () => {
   const { name } = useSelector((state: StoreState) => state.creatorData);
   const dispatch = useDispatch();
   const [disable, setDisable] = useState(true);
- 
-  const checkInput = (name : String) => {
-    if(name === '') {
+
+  const checkInput = (name: String) => {
+    if (name === "") {
       setDisable(true);
     } else {
-      setDisable(false)
+      setDisable(false);
     }
-  }
+  };
   return (
     <Layout footer={<Footer disabled={disable} />}>
       <div className={styles.main}>
@@ -53,7 +57,7 @@ const Home: NextPage = () => {
             maxLength={10}
             className={styles.input}
             value={name}
-            onKeyUp={()=> checkInput(name)}
+            onKeyUp={() => checkInput(name)}
             onChange={(e) => dispatch(setName(e.target.value))}
           />
           의
