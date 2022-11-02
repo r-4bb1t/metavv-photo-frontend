@@ -70,6 +70,7 @@ const Frame = ({
     frameRef.current.parentElement!.style.width = "1000px";
     frameRef.current.parentElement!.style.height = "1000px";
     domtoimage.toPng(frameRef.current, { quality: 10 }).then((dataUrl) => {
+
       let a = document.createElement("a");
       a.href = dataUrl; //Image Base64 Goes here
       a.download = "Image.png"; //File name Here
@@ -116,10 +117,28 @@ const Frame = ({
                   onClick={() => setIsModalOpen(i)}
                 >
                   {p ? (
-                    <img
-                      src={`${p}?random=${Math.random()}`}
-                      crossOrigin="anonymous"
-                    />
+                    <>                    
+                      <img
+                        src={`${p}?random=${Math.random()}`}
+                        crossOrigin="anonymous"
+                      />
+                      <button
+                        className={styles.close}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="8"
+                          height="16"
+                          viewBox="0 0 8 8"
+                          fill="none"
+                        >
+                          <path
+                            d="M3.99995 4.52501L1.46245 7.06251C1.39578 7.12918 1.31045 7.16451 1.20645 7.16851C1.10212 7.17285 1.01245 7.13751 0.937451 7.06251C0.862451 6.98751 0.824951 6.90001 0.824951 6.80001C0.824951 6.70001 0.862451 6.61251 0.937451 6.53751L3.47495 4.00001L0.937451 1.46251C0.870784 1.39585 0.835451 1.31035 0.831451 1.20601C0.827118 1.10201 0.862451 1.01251 0.937451 0.937512C1.01245 0.862512 1.09995 0.825012 1.19995 0.825012C1.29995 0.825012 1.38745 0.862512 1.46245 0.937512L3.99995 3.47501L6.53745 0.937512C6.60412 0.870845 6.68962 0.835346 6.79395 0.831012C6.89795 0.827012 6.98745 0.862512 7.06245 0.937512C7.13745 1.01251 7.17495 1.10001 7.17495 1.20001C7.17495 1.30001 7.13745 1.38751 7.06245 1.46251L4.52495 4.00001L7.06245 6.53751C7.12912 6.60418 7.16445 6.68951 7.16845 6.79351C7.17278 6.89785 7.13745 6.98751 7.06245 7.06251C6.98745 7.13751 6.89995 7.17501 6.79995 7.17501C6.69995 7.17501 6.61245 7.13751 6.53745 7.06251L3.99995 4.52501Z"
+                            fill="white"
+                          />
+                        </svg>
+                      </button>
+                    </>
                   ) : (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
