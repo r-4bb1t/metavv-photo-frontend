@@ -7,18 +7,17 @@ import { StoreState } from "../redux/store";
 import styles from "../styles/Main.module.scss";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 const Footer = ({ disabled }: { disabled: boolean }) => {
   const router = useRouter();
   return (
     <button
+      disabled={disabled}
+      style={disabled === true ? {color: 'white', backgroundColor: '#D9D9D9'} : {color: 'black', backgroundColor: '#ffb800'}}
       className={styles.button}
       onClick={() => {
-        if (disabled) {
-          alert("이름을 입력해주세요.");
-        } else {
           router.push("/new");
-        }
       }}
     >
       만들기
@@ -29,14 +28,23 @@ const Footer = ({ disabled }: { disabled: boolean }) => {
 const Home: NextPage = () => {
   const { name } = useSelector((state: StoreState) => state.creatorData);
   const dispatch = useDispatch();
+  const [disable, setDisable] = useState(true);
+ 
+  const checkInput = (name : String) => {
+    if(name === '') {
+      setDisable(true);
+    } else {
+      setDisable(false)
+    }
+  }
   return (
-    <Layout footer={<Footer disabled={name.length === 0} />}>
+    <Layout footer={<Footer disabled={disable} />}>
       <div className={styles.main}>
         <div className={styles.title}>포토 월드컵</div>
         <div className={styles.contents}>
-          최애 굿즈 만들 사진이 고민되나요?
+          어떤 사진을 골라야 할 지 고민될 때
           <br />
-          다른 사람들과 의견을 공유해보세요!
+          나만의 포토 월드컵을 만들어 공유해 보세요!
         </div>
         <img src="/assets/camera.png" className={styles.camera} />
         <div className={styles.input_container}>
@@ -45,6 +53,7 @@ const Home: NextPage = () => {
             maxLength={10}
             className={styles.input}
             value={name}
+            onKeyUp={()=> checkInput(name)}
             onChange={(e) => dispatch(setName(e.target.value))}
           />
           의
