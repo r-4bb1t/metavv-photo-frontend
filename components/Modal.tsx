@@ -11,7 +11,7 @@ const Modal = ({ closeModal, image }: Props) => {
         <div id={styles.imgBorder}>
           <img src={image} className={styles.modalImg} />
         </div>
-        <div className={styles.close} onClick={() => closeModal()}>
+        <div className={styles.close}>
           <img src="/assets/gamePage/close.svg" />
           <div className={styles.closeBtn}>닫기</div>
         </div>

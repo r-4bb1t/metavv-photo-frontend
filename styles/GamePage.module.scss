@@ -98,6 +98,8 @@
   display: inline-flex;
   position: relative;
   top: 20px;
+  user-select: none;
+  pointer-events: none;
 }
 
 .closeBtn {
