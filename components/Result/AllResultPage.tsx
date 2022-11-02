@@ -16,6 +16,8 @@ import common from "../../styles/Common.module.scss";
 import { Photo } from "../../redux/result";
 import { PAGE_STATE } from "../../pages/game/[gameId]";
 import { Photos } from "../Photos";
+import { useSelector } from "react-redux";
+import { StoreState } from "../../redux/store";
 
 const AllResultPage = ({
   gameId,
@@ -29,6 +31,9 @@ const AllResultPage = ({
   setImages: Function;
 }) => {
   const [sortedData, setSortedData] = useState<Photo[][]>([]);
+  const { images: votedImages } = useSelector(
+    (state: StoreState) => state.result
+  );
 
   const s1 = useMemo(() => Math.floor(Math.random() * images.length), [images]),
     s2 = useMemo(() => Math.floor(Math.random() * images.length), [images]);
@@ -111,12 +116,14 @@ const AllResultPage = ({
 
         <Photos src1={images[s1]?.img || ""} src2={images[s2]?.img || ""} />
 
-        <button
-          className={common.borderedButton}
-          onClick={() => setPageState(PAGE_STATE.frame)}
-        >
-          나만의 프레임 만들기
-        </button>
+        {votedImages.length > 0 && (
+          <button
+            className={common.borderedButton}
+            onClick={() => setPageState(PAGE_STATE.frame)}
+          >
+            나만의 프레임 만들기
+          </button>
+        )}
       </div>
     </Layout>
   );
