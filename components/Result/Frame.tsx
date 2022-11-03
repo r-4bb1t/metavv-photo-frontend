@@ -116,14 +116,21 @@ const Frame = ({
                   key={i}
                   onClick={() => setIsModalOpen(i)}
                 >
-                  {p ? (
-                    <>                    
+                  {p ? 
+                  (
+                    <>                 
                       <img
                         src={`${p}?random=${Math.random()}`}
                         crossOrigin="anonymous"
                       />
                       <button
                         className={styles.close}
+                        onClick={() => {
+                          let newPhotos = [...photos];
+                          newPhotos[i] = null;
+                          setPhotos(newPhotos);
+                        }
+                      }
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
