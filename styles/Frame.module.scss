@@ -13,6 +13,8 @@
 }
 
 .frameContainer {
+  width: 295px;
+  height: 295px;
   box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -25,7 +27,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 1%;
-  padding: 10%;
+  padding: 30px;
 }
 
 .frameThumbnail {
