@@ -6,6 +6,7 @@ import { Layout } from "../Layout";
 import { MyResult } from ".";
 import styles from "../../styles/Frame.module.scss";
 import domtoimage from "dom-to-image";
+import html2canvas from "html2canvas";
 import { PAGE_STATE } from "../../pages/game/[gameId]";
 
 const Footer = ({
@@ -69,14 +70,29 @@ const Frame = ({
     if (!frameRef.current) return;
     frameRef.current.parentElement!.style.width = "1000px";
     frameRef.current.parentElement!.style.height = "1000px";
-    domtoimage.toPng(frameRef.current, { quality: 10 }).then((dataUrl) => {
-      let a = document.createElement("a");
-      a.href = dataUrl; //Image Base64 Goes here
-      a.download = "Image.png"; //File name Here
-      a.click();
-      frameRef.current!.parentElement!.style.width = "100%";
-      frameRef.current!.parentElement!.style.height = "100%";
-    });
+
+    var agent = navigator.userAgent.toLowerCase();
+    if (agent.indexOf("safari") === -1) {
+      html2canvas(frameRef.current, {
+        useCORS: true,
+      }).then((canvas) => {
+        let a = document.createElement("a");
+        a.href = canvas.toDataURL(); //Image Base64 Goes here
+        a.download = "Image.png"; //File name Here
+        a.click();
+        frameRef.current!.parentElement!.style.width = "100%";
+        frameRef.current!.parentElement!.style.height = "100%";
+      });
+    } else {
+      domtoimage.toPng(frameRef.current, { quality: 10 }).then((dataUrl) => {
+        let a = document.createElement("a");
+        a.href = dataUrl; //Image Base64 Goes here
+        a.download = "Image.png"; //File name Here
+        a.click();
+        frameRef.current!.parentElement!.style.width = "100%";
+        frameRef.current!.parentElement!.style.height = "100%";
+      });
+    }
   };
 
   useEffect(() => {
