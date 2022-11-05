@@ -72,7 +72,8 @@ const Frame = ({
     frameRef.current.parentElement!.style.height = "1000px";
 
     var agent = navigator.userAgent.toLowerCase();
-    if (agent.indexOf("safari") === -1) {
+    if (agent.indexOf("safari") !== -1) {
+      //safari
       html2canvas(frameRef.current, {
         useCORS: true,
       }).then((canvas) => {
