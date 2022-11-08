@@ -36,6 +36,7 @@
 
 .item {
   width: 100%;
+  position: relative;
   aspect-ratio: 1 / 1;
   @supports not (aspect-ratio: 1 / 1) {
     &::before {
@@ -94,4 +95,18 @@
   overflow-y: auto;
   padding: 0 8px;
   padding-top: 48px;
+}
+
+.close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  padding: 0;
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
 }
