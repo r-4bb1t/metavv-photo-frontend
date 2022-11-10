@@ -116,8 +116,6 @@ const Home: NextPage = () => {
         .finally(() => setLoading(false))
     )?.json();
 
-    alert("test: " + JSON.stringify(result));
-
     router.push(`/game/${result.url}`);
   };
 
