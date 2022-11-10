@@ -32,9 +32,7 @@ export const Layout = ({
         <main className={`${styles.main} ${white ? styles.white : ""}`}>
           {children}
         </main>
-        <div className={styles.footercontainer}>
-          <footer className={styles.footer}>{footer}</footer>
-        </div>
+        <footer className={styles.footer}>{footer}</footer>
       </div>
     </div>
   );
