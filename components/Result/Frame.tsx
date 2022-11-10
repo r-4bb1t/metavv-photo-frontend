@@ -54,7 +54,7 @@ const Frame = ({
   setPageState,
 }: {
   gameId: string;
-  setPageState: Dispatch<SetStateAction<PAGE_STATE>>;
+  setPageState: Dispatch<SetStateAction<PAGE_STATE[]>>;
 }) => {
   const [selectedFrame, setSelectedFrame] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState<null | number>(null);
@@ -115,7 +115,12 @@ const Frame = ({
         <Header
           title="프레임 만들기"
           white
-          back={() => setPageState(PAGE_STATE.all)}
+          back={() =>
+            setPageState((ps) => {
+              if (ps.length > 1) return ps.slice(0, -1);
+              return [PAGE_STATE.index];
+            })
+          }
         />
         <div className={styles.main}>
           <div className={styles.frameContainer}>

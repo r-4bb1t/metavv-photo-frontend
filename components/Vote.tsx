@@ -18,13 +18,18 @@ const Footer = ({
   setPageState,
 }: {
   len: number;
-  setPageState: Dispatch<SetStateAction<PAGE_STATE>>;
+  setPageState: Dispatch<SetStateAction<PAGE_STATE[]>>;
 }) => {
   return (
     <div className={styles.footer}>
       <button
         className={styles.button}
-        onClick={() => setPageState(PAGE_STATE.index)}
+        onClick={() =>
+          setPageState((ps) => {
+            if (ps.length > 1) return ps.slice(0, -1);
+            return [PAGE_STATE.index];
+          })
+        }
       >
         이전
       </button>
@@ -38,7 +43,7 @@ const Vote = ({
   setPageState,
 }: {
   gameId: string;
-  setPageState: Dispatch<SetStateAction<PAGE_STATE>>;
+  setPageState: Dispatch<SetStateAction<PAGE_STATE[]>>;
 }) => {
   const [modal, setModal] = useState(false);
   const [image, setImage] = useState("");
@@ -67,7 +72,7 @@ const Vote = ({
         name: name,
         photos: res,
       }),
-    }).then(() => setPageState(PAGE_STATE.my));
+    }).then(() => setPageState((ps) => [...ps, PAGE_STATE.my]));
   };
 
   const fetchData = useCallback(async () => {

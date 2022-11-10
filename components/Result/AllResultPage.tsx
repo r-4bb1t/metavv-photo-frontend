@@ -26,7 +26,7 @@ const AllResultPage = ({
   setImages,
 }: {
   gameId: string;
-  setPageState: Dispatch<SetStateAction<PAGE_STATE>>;
+  setPageState: Dispatch<SetStateAction<PAGE_STATE[]>>;
   images: Photo[];
   setImages: Function;
 }) => {
@@ -74,7 +74,12 @@ const AllResultPage = ({
     <Layout footer={<></>} noBackground>
       <Header
         title="포토 월드컵 전체 결과"
-        back={() => setPageState(PAGE_STATE.index)}
+        back={() =>
+          setPageState((ps) => {
+            if (ps.length > 1) return ps.slice(0, -1);
+            return [PAGE_STATE.index];
+          })
+        }
       />
       <div className={styles.main}>
         {sortedData.map((d, i) => (
@@ -97,7 +102,7 @@ const AllResultPage = ({
 
         <button
           className={common.borderedButton}
-          onClick={() => setPageState(PAGE_STATE.vote)}
+          onClick={() => setPageState((ps) => [...ps, PAGE_STATE.vote])}
         >
           <div>
             {votedImages.length === images.length
@@ -123,7 +128,7 @@ const AllResultPage = ({
         {votedImages.length === images.length && (
           <button
             className={common.borderedButton}
-            onClick={() => setPageState(PAGE_STATE.frame)}
+            onClick={() => setPageState((ps) => [...ps, PAGE_STATE.frame])}
           >
             나만의 프레임 만들기
           </button>

@@ -16,7 +16,7 @@ export const GameStart = ({
   setImages,
 }: {
   title: string;
-  setPageState: Dispatch<SetStateAction<PAGE_STATE>>;
+  setPageState: Dispatch<SetStateAction<PAGE_STATE[]>>;
   images: Photo[];
   setImages: Function;
 }) => {
@@ -64,13 +64,13 @@ export const GameStart = ({
         </div>
         <button
           className={common.button}
-          onClick={() => setPageState(PAGE_STATE.vote)}
+          onClick={() => setPageState((ps) => [...ps, PAGE_STATE.vote])}
         >
           포토 월드컵 투표하기
         </button>
         <button
           className={common.borderedButton}
-          onClick={() => setPageState(PAGE_STATE.all)}
+          onClick={() => setPageState((ps) => [...ps, PAGE_STATE.all])}
         >
           전체 결과 바로보기
         </button>

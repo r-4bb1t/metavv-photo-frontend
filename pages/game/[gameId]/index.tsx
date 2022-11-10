@@ -25,7 +25,7 @@ const Home: NextPage = () => {
   const [title, setTitle] = useState("");
   const [images, setImages] = useState<Photo[]>([]);
 
-  const [pageState, setPageState] = useState(PAGE_STATE.index);
+  const [pageState, setPageState] = useState([PAGE_STATE.index]);
 
   const fetchData = useCallback(async () => {
     const result = await (
@@ -86,7 +86,7 @@ const Home: NextPage = () => {
               setImages={setImages}
             />
           ),
-        }[pageState]
+        }[pageState[pageState.length - 1]]
       }
     </>
   );

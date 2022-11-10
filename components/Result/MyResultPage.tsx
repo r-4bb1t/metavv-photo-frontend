@@ -25,7 +25,7 @@ const MyResultPage = ({
   setImages,
 }: {
   gameId: string;
-  setPageState: Dispatch<SetStateAction<PAGE_STATE>>;
+  setPageState: Dispatch<SetStateAction<PAGE_STATE[]>>;
   images: Photo[];
   setImages: Function;
 }) => {
@@ -36,19 +36,24 @@ const MyResultPage = ({
     <Layout footer={<></>} noBackground>
       <Header
         title="나의 포토 월드컵 결과"
-        back={() => setPageState(PAGE_STATE.index)}
+        back={() =>
+          setPageState((ps) => {
+            if (ps.length > 1) return ps.slice(0, -1);
+            return [PAGE_STATE.index];
+          })
+        }
       />
       <MyResult gameId={gameId} />
 
       <button
         className={common.button}
-        onClick={() => setPageState(PAGE_STATE.all)}
+        onClick={() => setPageState((ps) => [...ps, PAGE_STATE.all])}
       >
         전체 결과 보러가기
       </button>
       <button
         className={common.borderedButton}
-        onClick={() => setPageState(PAGE_STATE.vote)}
+        onClick={() => setPageState((ps) => [...ps, PAGE_STATE.vote])}
       >
         <div>투표 다시하기</div>
         <svg
@@ -69,7 +74,7 @@ const MyResultPage = ({
 
       <button
         className={common.borderedButton}
-        onClick={() => setPageState(PAGE_STATE.frame)}
+        onClick={() => setPageState((ps) => [...ps, PAGE_STATE.frame])}
       >
         나만의 프레임 만들기
       </button>
