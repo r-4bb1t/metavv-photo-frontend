@@ -80,11 +80,30 @@ const Home: NextPage = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
-  const handleFileUpload = (files: File[]) => {
+  const handleFileUpload = async (files: File[]) => {
     if (!files || files.length < 0) return;
     Array.from(files)
       .slice(0, len - images.length)
-      .forEach((f) => {
+      .forEach(async (f) => {
+        if (
+          f.name.split(".")[1] === "heic" ||
+          f.name.split(".")[1] === "HEIC"
+        ) {
+          let blob = f;
+          const heic2any = require("heic2any");
+          await heic2any({ blob: blob, toType: "image/jpeg" }).then(
+            (resultBlob: Blob) => {
+              f = new File(
+                [resultBlob as Blob],
+                f.name.split(".")[0] + ".jpg",
+                {
+                  type: "image/jpeg",
+                  lastModified: new Date().getTime(),
+                }
+              );
+            }
+          );
+        }
         dispatch(addImage({ file: f, id: f.name + new Date().getTime() }));
       });
   };
