@@ -123,7 +123,12 @@ const Vote = ({
           <>
             <div className={styles.img1Area}>
               <div
-                className={styles.imgBorder1}
+                className={`${styles.imgBorder1} ${
+                  isSelected &&
+                  next.some((n) => n.id === selected[round * 2].id)
+                    ? styles.selected
+                    : ""
+                }`}
                 onClick={() => {
                   if (!isSelected) {
                     setNext((next) =>
@@ -156,7 +161,12 @@ const Vote = ({
 
             <div className={styles.img2Area}>
               <div
-                className={styles.imgBorder2}
+                className={`${styles.imgBorder2} ${
+                  isSelected &&
+                  next.some((n) => n.id === selected[round * 2 + 1].id)
+                    ? styles.selected
+                    : ""
+                }`}
                 onClick={() => {
                   if (!isSelected) {
                     setNext((next) =>
@@ -171,7 +181,7 @@ const Vote = ({
                 <img
                   className={`${styles.img2} ${
                     next.some((n) => n.id === selected[round * 2 + 1].id)
-                      ? ""
+                      ? styles.selected
                       : styles.notSelected
                   }`}
                   src={selected[round * 2 + 1].img}
