@@ -1,6 +1,13 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  SyntheticEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Header } from "../Header";
 import { Layout } from "../Layout";
 import { MyResult } from ".";
@@ -65,6 +72,15 @@ const Frame = ({
     null,
   ]);
   const frameRef = useRef<HTMLDivElement>(null);
+
+  const setDirection = (i: SyntheticEvent<HTMLImageElement, Event>) => {
+    const element = i.currentTarget;
+    if (element.naturalWidth / element.naturalHeight > 1) {
+      element.classList.add(styles.horizontal);
+    } else {
+      element.classList.add(styles.vertical);
+    }
+  };
 
   const handleDownload = () => {
     if (!frameRef.current) return;
@@ -142,6 +158,7 @@ const Frame = ({
                       <img
                         src={`${p}?random=${Math.random()}`}
                         crossOrigin="anonymous"
+                        onLoad={(i) => setDirection(i)}
                       />
                       <button
                         className={styles.close}
