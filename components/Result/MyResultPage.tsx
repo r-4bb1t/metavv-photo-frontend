@@ -31,7 +31,7 @@ const MyResultPage = ({
 }) => {
   const s1 = useMemo(() => Math.floor(Math.random() * images.length), [images]),
     s2 = useMemo(() => Math.floor(Math.random() * images.length), [images]);
-
+  console.log(gameId, images)
   return (
     <Layout footer={<></>} noBackground>
       <Header
@@ -39,7 +39,6 @@ const MyResultPage = ({
         back={() => setPageState(PAGE_STATE.index)}
       />
       <MyResult gameId={gameId} />
-
       <button
         className={common.button}
         onClick={() => setPageState(PAGE_STATE.all)}

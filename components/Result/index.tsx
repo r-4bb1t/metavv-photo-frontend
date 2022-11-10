@@ -15,7 +15,7 @@ export const MyResult = ({
   const { images } = useSelector((state: StoreState) => state.result);
   const [sortedImages, setSortedImages] = useState<Photo[][]>([]);
   const [all, setAll] = useState<Photo[]>([]);
-
+  // console.log(sortedImages.length === 0);
   useEffect(() => {
     const imgs = Array.from(images);
     if (imgs.length === 0) return;

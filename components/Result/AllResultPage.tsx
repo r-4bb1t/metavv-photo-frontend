@@ -18,6 +18,8 @@ import { PAGE_STATE } from "../../pages/game/[gameId]";
 import { Photos } from "../Photos";
 import { useSelector } from "react-redux";
 import { StoreState } from "../../redux/store";
+import MyResultPage from "./MyResultPage";
+import { MyResult } from ".";
 
 const AllResultPage = ({
   gameId,
@@ -69,12 +71,15 @@ const AllResultPage = ({
     }
     setSortedData(newData);
   }, [images]);
-
   return (
     <Layout footer={<></>} noBackground>
       <Header
         title="포토 월드컵 전체 결과"
-        back={() => setPageState(PAGE_STATE.index)}
+        back={() =>
+          // console.log(PAGE_STATE.my)
+          // setPageState(PAGE_STATE.my)
+          setPageState(PAGE_STATE.index)
+        }
       />
       <div className={styles.main}>
         {sortedData.map((d, i) => (
