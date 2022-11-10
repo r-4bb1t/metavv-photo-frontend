@@ -22,7 +22,7 @@
 }
 
 .main {
-  min-height: 100vh;
+  min-height: calc(100vh - 4rem);
   overflow-y: auto;
   overflow-x: hidden;
   padding: 2rem;
