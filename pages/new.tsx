@@ -129,7 +129,10 @@ const Home: NextPage = () => {
           if (e.code == 413) {
             alert("파일 크기가 너무 큽니다.");
           } else {
-            alert("문제가 발생했습니다. 잠시 후 다시 시도해주세요.");
+            alert(
+              "문제가 발생했습니다. 잠시 후 다시 시도해주세요. 에러 코드: " +
+                e.code
+            );
           }
         })
         .finally(() => setLoading(false))
