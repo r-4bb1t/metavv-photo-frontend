@@ -105,16 +105,18 @@ const Home: NextPage = () => {
       await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/new`, {
         method: "POST",
         body: data,
-      }).catch((e) => {
-        if (e.code == 413) {
-          alert("파일 크기가 너무 큽니다.");
-        } else {
-          alert("문제가 발생했습니다. 잠시 후 다시 시도해주세요.");
-        }
       })
+        .catch((e) => {
+          if (e.code == 413) {
+            alert("파일 크기가 너무 큽니다.");
+          } else {
+            alert("문제가 발생했습니다. 잠시 후 다시 시도해주세요.");
+          }
+        })
+        .finally(() => setLoading(false))
     )?.json();
 
-    setLoading(false);
+    alert("test: " + JSON.stringify(result));
 
     router.push(`/game/${result.url}`);
   };
