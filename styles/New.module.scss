@@ -148,3 +148,14 @@ $primary: #ffb800;
   top: 4.5px;
   left: 4.55px;
 }
+
+.loading {
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  text-align: center;
+}

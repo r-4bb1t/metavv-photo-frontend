@@ -225,6 +225,13 @@ const Home: NextPage = () => {
           </div>
         ) : null}
       </div>
+      {loading && (
+        <div className={styles.loading}>
+          로딩 중입니다.
+          <br />
+          사진 용량이 클 경우 시간이 오래 걸릴 수 있습니다.
+        </div>
+      )}
     </Layout>
   );
 };
