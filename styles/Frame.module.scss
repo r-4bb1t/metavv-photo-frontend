@@ -1,6 +1,7 @@
 .main {
   padding: 0 8px;
   padding-top: 48px;
+  position: relative;
 }
 
 .framelist {
@@ -16,6 +17,9 @@
   width: 295px;
   height: 295px;
   box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+  left: 50%;
+  margin-left: -147.5px;
 }
 
 .frame {
