@@ -18,6 +18,7 @@ import { PAGE_STATE } from "../../pages/game/[gameId]";
 import { Photos } from "../Photos";
 import { useSelector } from "react-redux";
 import { StoreState } from "../../redux/store";
+import { PhotoList } from "../PhotoList";
 
 const AllResultPage = ({
   gameId,
@@ -87,16 +88,7 @@ const AllResultPage = ({
             <div className={styles.title} key={`title${i}`}>
               {i + 1}위
             </div>
-            <div className={styles.photolist} key={`photolist${i}`}>
-              {d.map((dd, ii) => (
-                <div className={styles.photoitem} key={`item${i}-${ii}`}>
-                  <div className={styles.photo}>
-                    <img src={dd.img} />
-                  </div>
-                  <div className={styles.ranking}>{dd.score}표</div>
-                </div>
-              ))}
-            </div>
+            <PhotoList data={d} key={`pl-${i}`} />
           </>
         ))}
 
