@@ -73,6 +73,37 @@ const Frame = ({
   ]);
   const frameRef = useRef<HTMLDivElement>(null);
 
+  let pos = { left: 0, x: 0 };
+  const ref = useRef<HTMLDivElement>(null);
+
+  const mouseDownHandler = (e: React.MouseEvent) => {
+    if (!ref.current) return;
+    pos = {
+      // The current scroll
+      left: ref.current.scrollLeft,
+      x: e.clientX,
+    };
+
+    ref.current.addEventListener("mousemove", mouseMoveHandler);
+    ref.current.addEventListener("mouseup", mouseUpHandler);
+    ref.current.addEventListener("mouseleave", mouseUpHandler);
+  };
+
+  const mouseMoveHandler = (e: MouseEvent) => {
+    if (!ref.current) return;
+    const dx = e.clientX - pos.x;
+
+    ref.current.scrollLeft = pos.left - dx;
+  };
+
+  const mouseUpHandler = () => {
+    if (!ref.current) return;
+
+    ref.current.removeEventListener("mousemove", mouseMoveHandler);
+    ref.current.removeEventListener("mouseup", mouseUpHandler);
+    ref.current.removeEventListener("mouseleave", mouseUpHandler);
+  };
+
   const setDirection = (i: SyntheticEvent<HTMLImageElement, Event>) => {
     const element = i.currentTarget;
     if (element.naturalWidth / element.naturalHeight > 1) {
@@ -224,7 +255,11 @@ const Frame = ({
           </div>
 
           <div className={styles.title}>프레임 선택</div>
-          <div className={styles.framelist}>
+          <div
+            className={styles.framelist}
+            ref={ref}
+            onMouseDown={mouseDownHandler}
+          >
             {[...Array(6)].map((_, i) => (
               <div key={i} onClick={() => setSelectedFrame(i)}>
                 <div
