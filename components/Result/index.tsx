@@ -65,6 +65,7 @@ export const MyResult = ({
           <PhotoList
             data={list}
             key={`pl-${i}`}
+            select={select}
             description={list.map(
               (d) =>
                 `실시간 전체 랭킹 ${

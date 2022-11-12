@@ -84,8 +84,12 @@ const Frame = ({
 
   const handleDownload = () => {
     if (!frameRef.current) return;
-    frameRef.current.parentElement!.style.width = "1000px";
-    frameRef.current.parentElement!.style.height = "1000px";
+    /*     frameRef.current.parentElement!.style.width = "1000px";
+    frameRef.current.parentElement!.style.height = "1000px"; */
+    const closes = Array.from(document.getElementsByClassName(styles.close));
+    closes.forEach((v) => {
+      (v as HTMLDivElement).style.display = "none";
+    });
 
     var agent = navigator.userAgent.toLowerCase();
     if (agent.indexOf("safari") !== -1) {
@@ -97,8 +101,11 @@ const Frame = ({
         a.href = canvas.toDataURL(); //Image Base64 Goes here
         a.download = "Image.png"; //File name Here
         a.click();
-        frameRef.current!.parentElement!.style.width = "100%";
-        frameRef.current!.parentElement!.style.height = "100%";
+        /*         frameRef.current!.parentElement!.style.width = "100%";
+        frameRef.current!.parentElement!.style.height = "auto"; */
+        closes.forEach((v) => {
+          (v as HTMLDivElement).style.display = "block";
+        });
       });
     } else {
       domtoimage.toPng(frameRef.current, { quality: 10 }).then((dataUrl) => {
@@ -106,8 +113,11 @@ const Frame = ({
         a.href = dataUrl; //Image Base64 Goes here
         a.download = "Image.png"; //File name Here
         a.click();
-        frameRef.current!.parentElement!.style.width = "100%";
-        frameRef.current!.parentElement!.style.height = "100%";
+        /*         frameRef.current!.parentElement!.style.width = "100%";
+        frameRef.current!.parentElement!.style.height = "auto"; */
+        closes.forEach((v) => {
+          (v as HTMLDivElement).style.display = "block";
+        });
       });
     }
   };

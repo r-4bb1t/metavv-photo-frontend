@@ -4,9 +4,11 @@ import { useRef } from "react";
 export const PhotoList = ({
   data,
   description,
+  select = (url: string) => {},
 }: {
   data: Photo[];
   description: string[];
+  select?: Function;
 }) => {
   let pos = { left: 0, x: 0 };
   const ref = useRef<HTMLDivElement>(null);
@@ -42,7 +44,11 @@ export const PhotoList = ({
   return (
     <div className={styles.photolist} onMouseDown={mouseDownHandler} ref={ref}>
       {data.map((d, i) => (
-        <div className={styles.photoitem} key={`item-${i}`}>
+        <div
+          className={styles.photoitem}
+          key={`item-${i}`}
+          onClick={() => select(d.img)}
+        >
           <div className={styles.photo}>
             <img src={d.img} />
           </div>
