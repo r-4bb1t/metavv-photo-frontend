@@ -125,7 +125,7 @@ const Vote = ({
     >
       <div className={styles.contents}>
         {selected[round * 2] && selected[round * 2 + 1] && (
-          <>
+          <div className={styles.imgWrapper}>
             <div className={styles.img1Area}>
               <div
                 className={`${styles.imgBorder1} ${
@@ -201,7 +201,7 @@ const Vote = ({
                 src="/assets/gamePage/mag.svg"
               />
             </div>
-          </>
+          </div>
         )}
         <img className={styles.vs} src="/assets/gamePage/vs.png" />
 

@@ -1,6 +1,12 @@
 .contents {
-  margin-top: 2.5rem;
   position: relative;
+  height: calc(100vh - 8rem);
+}
+.imgWrapper {
+  position: absolute;
+  top: 50%;
+  margin-top: -253px;
+  width: 100%;
 }
 
 .img1Area {
