@@ -1,7 +1,13 @@
 import styles from "../styles/Result.module.scss";
 import { Photo } from "../redux/result";
 import { useRef } from "react";
-export const PhotoList = ({ data }: { data: Photo[] }) => {
+export const PhotoList = ({
+  data,
+  description,
+}: {
+  data: Photo[];
+  description: string[];
+}) => {
   let pos = { left: 0, x: 0 };
   const ref = useRef<HTMLDivElement>(null);
 
@@ -40,7 +46,7 @@ export const PhotoList = ({ data }: { data: Photo[] }) => {
           <div className={styles.photo}>
             <img src={d.img} />
           </div>
-          <div className={styles.ranking}>{d.score}표</div>
+          <div className={styles.ranking}>{description[i]}</div>
         </div>
       ))}
     </div>

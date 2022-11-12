@@ -88,7 +88,11 @@ const AllResultPage = ({
             <div className={styles.title} key={`title${i}`}>
               {i + 1}위
             </div>
-            <PhotoList data={d} key={`pl-${i}`} />
+            <PhotoList
+              data={d}
+              key={`pl-${i}`}
+              description={d.map((d) => `${d.score}표`)}
+            />
           </>
         ))}
 

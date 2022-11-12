@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Photo } from "../../redux/result";
 import { StoreState } from "../../redux/store";
 import styles from "../../styles/Result.module.scss";
+import { PhotoList } from "../PhotoList";
 
 export const MyResult = ({
   gameId,
@@ -61,23 +62,16 @@ export const MyResult = ({
               ? "결승 진출"
               : Math.pow(2, i) + "강 진출"}
           </div>
-          <div className={styles.photolist} key={`photolist${i}`}>
-            {list.map((image, ii) => (
-              <div
-                className={styles.photoitem}
-                key={`img${image.id}${ii}`}
-                onClick={() => select(image.img)}
-              >
-                <div className={styles.photo}>
-                  <img src={image.img} />
-                </div>
-                <div className={styles.ranking}>
-                  실시간 전체 랭킹{" "}
-                  {all && all.findIndex((p) => p.id === image.id) + 1}위
-                </div>
-              </div>
-            ))}
-          </div>
+          <PhotoList
+            data={list}
+            key={`pl-${i}`}
+            description={list.map(
+              (d) =>
+                `실시간 전체 랭킹 ${
+                  all && all.findIndex((p) => p.id === d.id) + 1
+                }위`
+            )}
+          />
         </>
       ))}
     </div>
