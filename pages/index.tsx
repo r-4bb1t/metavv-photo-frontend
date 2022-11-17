@@ -7,7 +7,6 @@ import { StoreState } from "../redux/store";
 import styles from "../styles/Main.module.scss";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
 const Footer = ({ disabled }: { disabled: boolean }) => {
   const router = useRouter();
@@ -32,17 +31,8 @@ const Footer = ({ disabled }: { disabled: boolean }) => {
 const Home: NextPage = () => {
   const { name } = useSelector((state: StoreState) => state.creatorData);
   const dispatch = useDispatch();
-  const [disable, setDisable] = useState(true);
-
-  const checkInput = (name: String) => {
-    if (name === "") {
-      setDisable(true);
-    } else {
-      setDisable(false);
-    }
-  };
   return (
-    <Layout footer={<Footer disabled={disable} />}>
+    <Layout footer={<Footer disabled={name === ""} />}>
       <div className={styles.main}>
         <div className={styles.title}>포토 월드컵</div>
         <div className={styles.contents}>
@@ -57,7 +47,6 @@ const Home: NextPage = () => {
             maxLength={10}
             className={styles.input}
             value={name}
-            onKeyUp={() => checkInput(name)}
             onChange={(e) => dispatch(setName(e.target.value))}
           />
           의
