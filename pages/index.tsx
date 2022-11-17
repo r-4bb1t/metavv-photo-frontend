@@ -42,7 +42,7 @@ const Home: NextPage = () => {
     }
   };
   return (
-    <Layout footer={<Footer disabled={disable} />}>
+    <Layout footer={<Footer disabled={name === ""} />}>
       <div className={styles.main}>
         <div className={styles.title}>포토 월드컵</div>
         <div className={styles.contents}>
