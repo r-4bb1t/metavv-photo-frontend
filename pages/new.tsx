@@ -165,14 +165,16 @@ const Home: NextPage = () => {
               key={l}
               className={`${styles.lenbtn} ${len === l ? styles.active : ""}`}
               onClick={() => {
-                if (
-                  confirm(
-                    `${l}강으로 변경하시겠습니까?\n현재 등록한 사진은 초기화됩니다.`
-                  )
-                ) {
-                  dispatch(setLen(l));
-                  dispatch(resetImage());
+                if(images.length !== 0) {
+                  if (
+                    confirm(
+                      `${l}강으로 변경하시겠습니까?\n현재 등록한 사진은 초기화됩니다.`
+                    )
+                    ) {
+                    dispatch(resetImage());
+                  }
                 }
+                dispatch(setLen(l));
               }}
             >
               {l}강
