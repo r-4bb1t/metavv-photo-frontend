@@ -25,10 +25,18 @@ const Footer = ({
   loading: boolean;
 }) => {
   const router = useRouter();
-
+  const dispatch = useDispatch();
   return (
     <div className={styles.footer}>
-      <button className={styles.button} onClick={() => router.back()}>
+      <button className={styles.button} onClick={() => {
+        router.back()
+        if(
+          confirm(
+            '현재 등록한 사진을 초기화 하시겠습니까?'
+          )) {
+          dispatch(resetImage());
+        }
+      }}>
         이전
       </button>
       <div>총 {n}장의 사진을 등록했어요!</div>
