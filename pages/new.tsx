@@ -166,11 +166,10 @@ const Home: NextPage = () => {
               className={`${styles.lenbtn} ${len === l ? styles.active : ""}`}
               onClick={() => {
                 if(images.length !== 0) {
-                  if (
+                  if(
                     confirm(
                       `${l}강으로 변경하시겠습니까?\n현재 등록한 사진은 초기화됩니다.`
-                    )
-                    ) {
+                    )) {
                     dispatch(resetImage());
                   }
                 }
@@ -220,7 +219,12 @@ const Home: NextPage = () => {
               <img
                 src="/assets/refresh.svg"
                 onClick={() => {
+                  if(
+                    confirm(
+                    '현재 등록한 사진은 초기화됩니다.'
+                    )) {
                   dispatch(resetImage());
+                  }
                 }}
               />
             </span>
